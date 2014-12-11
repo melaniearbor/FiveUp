@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<html>
+<head>
+        <title>FiveUp: Happiness Five Texts at a Time</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/fiveup.css' %}">
+
+        <style type="text/css">
+        .navbar {
+            background-color: rgb(106,158,161);
+        }
+        .navbar-inverse .navbar-brand, .navbar-brand:hover {
+            color: white;
+        }
+        </style>
+        {% block styles %}
+
+        {% endblock %}
+    </head>
+
+    <body>
+            {% block content %}
+            {% endblock %}
+
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    </body>
+</html>
