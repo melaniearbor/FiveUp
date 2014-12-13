@@ -1,16 +1,17 @@
-from django.contrib.auth.forms import UserCreationForm as AuthUserCreationForm, 
-UserChangeForm as AuthUserChangeForm
-fropm django import forms
+from django.contrib.auth.forms import UserCreationForm as AuthUserCreationForm, UserChangeForm as AuthUserChangeForm
+from django import forms
 
 from fuauth.models import User
 
 class UserCreationForm(AuthUserCreationForm):
 
 	#TODO - Determine if newsletter line is needed
-	#receive_newsletter = forms.BooleanField(required=False)
+	receive_newsletter = forms.BooleanField(required=False)
 
 	class Meta:
-		model = UserCreationForm
+		model = User
+		fields = ['name', 'email', 'phone_number', 'carrier', 'user_timezone', 
+		'is_staff', 'is_active', 'receive_newsletter']
 
 	def clean_username(self):
 		username = self.cleaned_data['username']
@@ -26,7 +27,9 @@ class UserCreationForm(AuthUserCreationForm):
 class UserChangeForm(AuthUserChangeForm):
 
 	#TODO - Determine if newsletter line is needed
-	#receive_newsletter = forms.BooleanField(required=False)
+	receive_newsletter = forms.BooleanField(required=False)
 
 	class Meta:
-		model = User 
+		model = User
+		fields = ['name', 'email', 'phone_number', 'carrier', 'user_timezone', 
+		'is_staff', 'is_active', 'receive_newsletter']

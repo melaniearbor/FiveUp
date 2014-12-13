@@ -28,6 +28,12 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+
+
+
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -38,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fuauth',
+    'messagebox',
     'widget_tweaks',
 )
 
@@ -97,7 +104,7 @@ STATICFILES_DIRS = (
     ),
     os.path.join(
         BASE_DIR,
-        'messages/static',
+        'messagebox/static',
     ),
     os.path.join(
         BASE_DIR,
@@ -108,7 +115,7 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(
         BASE_DIR,
-        'messages/templates',
+        'messagebox/templates',
     ),
     os.path.join(
         BASE_DIR,

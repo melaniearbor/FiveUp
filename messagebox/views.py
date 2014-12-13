@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
-from messages.models import Message
+from messagebox.models import Message
 from django.utils.translation import ugettext_lazy as _ 
 
 # Create your views here.

@@ -7,37 +7,36 @@ from django.utils import timezone
 from django.core.mail import send_mail
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _ 
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, 
-BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django import forms
 
-from uuidfield import UUIDFIELD
+from uuidfield import UUIDField
 
 # Create your models here.
 
 class UserManager(BaseUserManager):
-  def _create_user(self, name, email, phone_number, carrier,
-   timezone, is_staff, is_superuser):
+  def _create_user(self, name, email, password, phone_number, carrier,
+   user_timezone, is_staff, is_superuser):
     now = timezone.now()
     if not email:
       raise ValueError(_('Hey there! We need your email address.'))
     email = self.normalize_email(email)
     user = self.model(name=name, email=email, phone_number=phone_number,
-      carrier=carrier, timezone=timezone, is_staff=is_staff, is_superuser=is_superuser,
-      last_login=now, date_joined=now, uuid=uuid)
+      carrier=carrier, user_timezone=user_timezone, is_staff=is_staff, is_superuser=is_superuser,
+      last_login=now, date_joined=now)
     user.set_password(password)
     user.save(using=self._db)
     return user
 
-  def create_user(self, name, email=None, password=None, phone_number,
-    carrier, timezone):
+  def create_user(self, name, phone_number,
+    carrier, user_timezone, email=None, password=None):
     return self._create_user(name, email, password, phone_number, 
-      carrier, timezone, False, False)
+      carrier, user_timezone, False, False)
 
-  def create_superuser(self, username, email, password, phone_number, 
-    carrier, timezone):
+  def create_superuser(self, name, email, password, phone_number, 
+    carrier, user_timezone):
     user=self._create_user(name, email, password, phone_number, carrier,
-      timezone, True, True)
+      user_timezone, True, True)
     user.is_active=True
     user.save(using=self._db)
     return user
@@ -79,6 +78,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(
       _('your email address'),
+      unique = True,
       max_length = 255,
     )
 
@@ -93,7 +93,7 @@ class User(AbstractBaseUser, PermissionsMixin):
       default=VIRGIN
     )
 
-    timezone = models.CharField(
+    user_timezone = models.CharField(
       max_length=2,
       choices=TIME_ZONE_CHOICES,
       default=PACIFIC
@@ -114,16 +114,18 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     date_joined = models.DateTimeField(
-      _('date joined'),
-      default = timezone.now
+      _('date joined'), 
+      auto_now=True
     )
 
-    uuid = UUIDFIELD(auto=True)
+    receive_newsletter = models.BooleanField(default=False)
+
+    uuid = UUIDField(auto=True)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name', 'phone_number', 'carrier', 'timezone']
+    REQUIRED_FIELDS = ['name', 'phone_number', 'carrier', 'user_timezone']
 
     def get_full_name(self):
       return self.name

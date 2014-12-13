@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 
 from fuauth.models import User
 from fuauth.forms import UserCreationForm, UserChangeForm
+from messagebox.models import Message
 
 # Register your models here.
 
@@ -27,6 +28,8 @@ class UserAdmin(AuthUserAdmin):
 	list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups',
 		'receive_newsletter')
 	search_fields = ('email', 'name', 'phone_number')
-	ordering = ('')
+	ordering = ('email', 'name')
+
 
 admin.site.register(User, UserAdmin)
+admin.site.register(Message)

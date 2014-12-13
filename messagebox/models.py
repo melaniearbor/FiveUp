@@ -21,9 +21,7 @@ class Message(models.Model):
 		max_length=125
 	)
 	created_date = models.DateTimeField(auto_now=True)
-	message_sent_to = models.CommaSeparatedIntegerField(
-		max_length=None
-	)
+	message_sent = models.BooleanField(default=False)
 
 	def __str__(self):
 		''' Gets a readable string of sender name and created_date
