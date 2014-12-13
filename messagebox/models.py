@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -31,11 +32,11 @@ class Message(models.Model):
 			str(self.created_date)
 		])
 
+#This *may* be used to list the messages in detail. 
 	def get_absolute_url(self):
-		''' returns a reference for the message in detail
-		view.'''
+		''' returns a reference for the message'''
 		# TODO Create message detail view
-		return reverse('message-detail-view', kwargs={'pk': self.id})
+		return reverse('add-message-success') #, kwargs={'pk': self.id} ?
 
 
 

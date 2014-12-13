@@ -12,4 +12,6 @@ urlpatterns = patterns('',
     # a way to store for a certain user in the messages db
     url(r'^new/(?P<uuid>.+)/$', messagebox.views.CreateMessageView.as_view(),
     name='add-message-view',),
+    url(r'^success/', messagebox.views.CreateMessageView.as_view(), 
+    	name='add-message-success',),
 )
