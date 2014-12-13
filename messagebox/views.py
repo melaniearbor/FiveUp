@@ -21,6 +21,8 @@ class CreateMessageView(CreateView, ModelFormMixin):
         'sender_name': _('Your name:'),
         'message_text': _('Your message:'),
     }
+
+    print("Doing stuff in CreateMessageView")
     # TODO - replace base.html with something that makes sense.
     # success_url = 'add-message-success'
 
@@ -34,9 +36,10 @@ class CreateMessageView(CreateView, ModelFormMixin):
             user_uuid=self.kwargs['uuid']
             # users = models.ForeignKey(settings.AUTH_USER_MODEL)
             # user = users.objects.get(uuid=uuid)
+            # print(user_uuid)
             return user_uuid
-        Message.recipient = get_user_uuid()
         new_message = form.save(commit=False)
+        new_message.recipient = get_user_uuid()
         new_message.save()
         self.object = new_message
 
