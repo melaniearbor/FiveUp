@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView, ModelFormMixin
 from messagebox.models import Message
 from django.utils.translation import ugettext_lazy as _ 
+from django.db import models
+from fuauth.models import User
 
 # Create your views here.
 
@@ -22,24 +24,18 @@ class CreateMessageView(CreateView, ModelFormMixin):
         'message_text': _('Your message:'),
     }
 
-    print("Doing stuff in CreateMessageView")
-    # TODO - replace base.html with something that makes sense.
-    # success_url = 'add-message-success'
-
-    # recipient = get_user()
-
     def form_valid(self, form):
         """
         If the form is valid, save the associated model.
         """
-        def get_user_uuid():
+        def get_user():
             user_uuid=self.kwargs['uuid']
-            # users = models.ForeignKey(settings.AUTH_USER_MODEL)
-            # user = users.objects.get(uuid=uuid)
+            # users = models.ForeignKey('fuauth.User')
+            user = User.objects.get(uuid=user_uuid)
             # print(user_uuid)
-            return user_uuid
+            return user
         new_message = form.save(commit=False)
-        new_message.recipient = get_user_uuid()
+        new_message.recipient = get_user()
         new_message.save()
         self.object = new_message
 

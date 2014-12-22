@@ -13,8 +13,9 @@ class Message(models.Model):
 	# 	return user_id
 
 	# recipient = self.get_user_id()
-	recipient = models.CharField(
-		max_length=32)
+	# recipient = models.CharField(
+	# 	max_length=32)
+	recipient = models.ForeignKey('fuauth.User', related_name='messages')
 	sender_name = models.CharField(
 		max_length = 35
 	)

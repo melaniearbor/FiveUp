@@ -24,6 +24,7 @@ class UserManager(BaseUserManager):
     user = self.model(name=name, email=email, phone_number=phone_number,
       carrier=carrier, user_timezone=user_timezone, is_staff=is_staff, is_superuser=is_superuser,
       last_login=now, date_joined=now)
+    user.uuid=uuid
     user.set_password(password)
     user.save(using=self._db)
     return user
@@ -115,12 +116,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     date_joined = models.DateTimeField(
       _('date joined'), 
-      auto_now=True
+      default=timezone.now
     )
 
     receive_newsletter = models.BooleanField(default=False)
 
-    uuid = UUIDField(auto=True)
+    uuid = UUIDField(
+      blank=True, 
+      null=True, 
+      max_length=32, 
+      auto=True
+    )
+    # uuid = '12345678'
 
     objects = UserManager()
 
