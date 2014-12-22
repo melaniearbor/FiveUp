@@ -40,7 +40,7 @@ class CustomUserAdmin(admin.ModelAdmin):
 	# 		'groups', 'user_permissions')}),
 	# 	('Important dates', {'fields': ('last_login', 'date_joined')}),
 	# )
-	add_fieldsets = (
+	fieldsets = (
 		(None, {'fields': ('email', 'password', 'receive_newsletter')}),
 		('Personal info', {'fields': ('name', 'phone_number', 'carrier', 'user_timezone')}),
 		('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
