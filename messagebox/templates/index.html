@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block styles %}
+<div class="site-wrapper">
+
+	<style>
+		body {
+			background: url('{% static "img/dandelion_bokeh.jpg" %}') no-repeat center center fixed;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+	</style>
+
+{% endblock %}
+
+{% block content %}
+
+<body>
+	<div class="jumbotron">
+		<div class="container">
+		  <h1>Welcome to FiveUp</h1>
+		  <p>We're spreading happy, five texts at a time. <br>Keep scrolling to find out how, sign up, and get a little happy.</p>
+		</div>
+	</div>
+
+
+<body>
+
+</div>
+{% endblock %}

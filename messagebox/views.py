@@ -40,8 +40,17 @@ class CreateMessageView(CreateView, ModelFormMixin):
         self.object = new_message
 
         return super(ModelFormMixin, self).form_valid(form)
+
+
+def success(request):
+    template_name = 'message_add_success.html'
+    return render(request, template_name)
     
     # Message.save(self)
 
     # def get_success_url(self):
     #     return reverse('add-message-view')
+
+def index(request):
+    template_name = 'index.html'
+    return render(request, template_name)
