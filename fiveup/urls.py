@@ -23,3 +23,5 @@ urlpatterns = patterns('',
     url(r'^signup/', fuauth.forms.PublicUserCreation.as_view(),
         name='signup-form',),
 )
+
+STATIC_URL = '/static/'

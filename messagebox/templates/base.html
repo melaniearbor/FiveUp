@@ -1,10 +1,11 @@
 {% load staticfiles %}
 <html>
-<head>
+    <head>
         <title>FiveUp: Happiness Five Texts at a Time</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
         <link rel="stylesheet" href="{% static 'css/fiveup.css' %}">
 
         <style type="text/css">
@@ -24,6 +25,6 @@
             {% block content %}
             {% endblock %}
 
-        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"/>
     </body>
 </html>
