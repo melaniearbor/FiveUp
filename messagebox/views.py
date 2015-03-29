@@ -54,3 +54,7 @@ def success(request):
 def index(request):
     template_name = 'index.html'
     return render(request, template_name)
+
+def dummy(request):
+    template_name = 'dumyhome.html'
+    return render(request, template_name)

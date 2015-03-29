@@ -1,0 +1,1 @@
+    $('#signup_modal_runner').DjangoModalRunner();

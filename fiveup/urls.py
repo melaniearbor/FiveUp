@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', messagebox.views.index,
+    url(r'^$', fuauth.forms.PublicUserCreation.as_view(),
         name='home',),
     # url for adding a new message with a certain uuid as
     # a way to store for a certain user in the messages db
@@ -18,10 +18,14 @@ urlpatterns = patterns('',
     name='add-message-view',),
     url(r'^add-message-success/', messagebox.views.success, 
     	name='add-message-success',),
+    url(r'^dummyhome/', messagebox.views.dummy, 
+        name='dummyhome',),
     url(r'^signup-success/', fuauth.views.success, 
         name='signup-success',),
     url(r'^signup/', fuauth.forms.PublicUserCreation.as_view(),
         name='signup-form',),
+    url(r'^test-signup/', fuauth.views.testsign, 
+        name='test-signup',),
 )
 
 STATIC_URL = '/static/'

@@ -3,7 +3,20 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _ 
 from django.views.generic.edit import CreateView, ModelFormMixin
 
+
 from fuauth.models import User
+
+class AjaxTemplateMixin(object):
+ 
+	def dispatch(self, request, *args, **kwargs):
+		if not hasattr(self, 'ajax_template_name'):
+			split = self.template_name.split('.html')
+			split[-1] = '_inner'
+			split.append('.html')
+			self.ajax_template_name = ''.join(split)
+		if request.is_ajax():
+			self.template_name = self.ajax_template_name
+		return super(AjaxTemplateMixin, self).dispatch(request, *args, **kwargs)
 
 class FUserCreationForm(forms.ModelForm):
 	password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
@@ -29,10 +42,10 @@ class FUserCreationForm(forms.ModelForm):
 			user.save()
 		return user
 
-class PublicUserCreation(CreateView, ModelFormMixin):
+class PublicUserCreation(CreateView, ModelFormMixin): #AjaxTemplateMixin
 
     model = User
-    template_name = 'sign_up.html'
+    template_name = 'index.html'
     success_url = '/signup-success/'
     fields = ['name', 'email', 'phone_number', 'carrier', 'user_timezone', 'password']
     labels = {

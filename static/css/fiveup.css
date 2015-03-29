@@ -23,10 +23,10 @@ body {
 	text-shadow: gray 0.0em 0.0em 0.2em !important;
 }
 
-/*p {
+p {
 	color: white;
 	text-align: center;
-}*/
+}
 
 .site-wrapper {
   display: table;
@@ -46,3 +46,6 @@ body {
 	text-align: center;
 }
 
+.midimage {
+  vertical-align: middle;
+}

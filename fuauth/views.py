@@ -5,3 +5,7 @@ from django.shortcuts import render
 def success(request):
     template_name = 'sign_up_success.html'
     return render(request, template_name)
+
+def testsign(request):
+	template_name = 'sign_up.html'
+	return render(request, template_name)

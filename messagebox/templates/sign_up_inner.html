@@ -1,0 +1,47 @@
+{% load widget_tweaks %}
+
+<!-- modal stuff -->
+<div class="modal fade" id="signupModal">
+	<div class="modal-dialog">
+	    <div class="modal-content">
+		    <div class="modal-header">
+				<form method="post" action="/signup/">
+					<h4>I'm a fancy form that will sign you up, boss.</h4>
+
+					    {% csrf_token %}
+				        <div class="form-group">
+						    <label>Your name:</label>
+						    {{ form.name|add_class:"form-control" }}
+						</div>
+					    <div class="form-group">
+						    <label>Your email address:</label>
+						    {{ form.email|add_class:"form-control" }}
+						</div>
+						<div class="form-group">
+						    <label>Your phone number:</label>
+						    {{ form.phone_number|add_class:"form-control" }}
+						</div>
+						<div class="form-group">
+						    <label>Who provides your phone service?</label>
+						    {{ form.carrier|add_class:"form-control" }}
+						</div>
+						<div class="form-group">
+						    <label>What time zone are you in?</label>
+						    {{ form.user_timezone|add_class:"form-control" }}
+						</div>
+						<div class="form-group">
+						    <label>Your super-secret password:</label>
+						    {{ form.password|add_class:"form-control" }}
+						</div>
+						<input type="submit" class="btn btn-submit col-md-offset-2">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end modal -->
+
+<button type="button" id="sign-up-btn" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signupModal">
+  Frogs!
+</button>
+

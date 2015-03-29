@@ -45,7 +45,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'fuauth',
     'messagebox',
+    'messagevault',
     'widget_tweaks',
+    'django_modalview',
+    'parsley',
 )
 
 MIDDLEWARE_CLASSES = (

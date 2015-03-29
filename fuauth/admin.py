@@ -4,6 +4,8 @@ from django.contrib import admin
 from fuauth.models import User
 from fuauth.forms import FUserCreationForm #FUserChangeForm
 from messagebox.models import Message
+from messagevault.models import CuratedMessage
+from messagevault.views import CuratedMessageForm
 
 # Register your models here.
 
@@ -56,6 +58,16 @@ class CustomUserAdmin(admin.ModelAdmin):
 	ordering = ('email', 'name')
 	# filter_horizontal = (,)
 
+class CuratedMessageAdmin(admin.ModelAdmin):
+
+    add_form = CuratedMessageForm
+
+    fieldsets = (
+    	('Banana Town', {'fields': ('message_text', 'message_author_first', 'message_author_last')}),
+	)
+
+
 
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Message)
+admin.site.register(CuratedMessage, CuratedMessageAdmin)
