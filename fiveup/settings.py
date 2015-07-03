@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'django_modalview',
     'parsley',
+    'courier'
 )
 
 MIDDLEWARE_CLASSES = (

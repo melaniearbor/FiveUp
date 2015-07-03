@@ -6,6 +6,7 @@ from fuauth.forms import FUserCreationForm #FUserChangeForm
 from messagebox.models import Message
 from messagevault.models import CuratedMessage
 from messagevault.views import CuratedMessageForm
+from courier.models import UserSendTime
 
 # Register your models here.
 
@@ -66,8 +67,11 @@ class CuratedMessageAdmin(admin.ModelAdmin):
     	('Banana Town', {'fields': ('message_text', 'message_author_first', 'message_author_last')}),
 	)
 
+# class UserSendTime(admin.ModelAdmin):
 
+# 	list_display = ('user', 'scheduled_times', 'sent')
 
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Message)
 admin.site.register(CuratedMessage, CuratedMessageAdmin)
+admin.site.register(UserSendTime)

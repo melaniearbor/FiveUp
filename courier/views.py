@@ -42,37 +42,31 @@ group_a, group_b, group_c = divide_users(group_a, group_b, group_c)
 
 print(group_a, group_b, group_c)
 
+specialthing = 'crutchback'
 
-def set_send_times():
+def create_schedule():
   """
-  For each group (A, B, and C) creates 5 random send times
+  Creates 5 random send times
   per day, within the hours of 6AM and 7PM PST. Send times 
   are no closer together than 40 minutes and no farther apart than
   2 hours and 36 minutes.
-
   """
 
   day_start = datetime.datetime(100, 1, 1, 6,00,00)
+  schedule = []
+  start_time = day_start
+  for x in range(0,5):
+    random_seconds = random.randint(2400, 9360)
+    send_time = start_time + datetime.timedelta(seconds=random_seconds)
+    schedule.append(send_time.time())
+    start_time = send_time
+    #print(schedule)
+  return schedule 
 
-  group_a_schedule = []
-  group_b_schedule = []
-  group_c_schedule = []
+group_a_schedule = create_schedule()
+group_b_schedule = create_schedule()
+group_c_schedule = create_schedule()
 
-  def create_schedule(schedule):
-
-    start_time = day_start
-    for x in range(0,5):
-      random_seconds = random.randint(2400, 9360)
-      send_time = start_time + datetime.timedelta(seconds=random_seconds)
-      schedule.append(send_time.time())
-      start_time = send_time
-      print(schedule)
-
-  group_a_schedule = create_schedule(group_a_schedule)
-  group_b_schedule = create_schedule(group_b_schedule)
-  group_c_schedule = create_schedule(group_c_schedule)
-
-  return group_a_schedule, group_b_schedule, group_b_schedule
 
 def check_for_unsent_user_messages(user):
   """
@@ -143,13 +137,16 @@ def find_time_owner(time, all_schedules):
   for schedule in all_schedules:
     if time in schedule:
       group_index = all_schedules.index(schedule)
-      if group_index == all_schedules[0]:
-        group =  group_a
-      elif group_index == all_schedules[1]:
-        group =  group_b
-      elif group_index == all_schedules[2]:
-        group =  group_c
-  return group
+    if group_index == 0:
+      group =  group_a
+      # print(group)
+    elif group_index == 1:
+      group =  group_b
+      # print(group)
+    elif group_index == 2:
+      group =  group_c
+      # print(group)
+    return group
 
 
 # def send_text():
@@ -169,20 +166,21 @@ def find_time_owner(time, all_schedules):
 
 #   s.quit()
 
-def send_text():
-  msg = email.message_from_string(str(message_to_send))
-  msg['From'] = "example@hotmail.fr"
-  msg['To'] = "example@hotmail.fr"
-  msg['Subject'] = "helOoooOo"
+def send_text(message, msg_to):
+  msg = email.message_from_string(str(message))
+  msg['From'] = "happy@fiveup.com"
+  msg['To'] = msg_to
+  msg['Subject'] = "" #can leave blank
 
   s = smtplib.SMTP("smtp.live.com",587)
   s.ehlo()
   s.starttls() 
   s.ehlo()
-  s.login('example@hotmail.fr', 'pass')
+  s.login('melanie_crutchfield@hotmail.com', specialthing) # TODO set up a user with a password that correlates
+  #to sending email account
 
-# s.sendmail(sender, recipient phone number, message)
-  s.sendmail("example@hotmail.fr", "example@hotmail.fr", msg.as_string())
+# s.sendmail(sender, recipient phone number, message) 6192032488@vmobl.com
+  s.sendmail("happy@fiveupapp.com", msg_to, msg.as_string())
 
   s.quit()
 
@@ -190,6 +188,12 @@ def send_text():
 def pick_and_send(group):
   for user in group:
     message = pick_message(user)
+    msg_to = user.phone_number + user.carrier  # TODO need to change carrier to give the email server data
+    send_text(message, msg_to)
+
+
+
+
     
 
 
