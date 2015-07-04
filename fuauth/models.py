@@ -24,7 +24,7 @@ class UserManager(BaseUserManager):
     user = self.model(name=name, email=email, phone_number=phone_number,
       carrier=carrier, user_timezone=user_timezone, is_staff=is_staff, is_superuser=is_superuser,
       last_login=now, date_joined=now)
-    user.uuid=uuid
+    # user.uuid=uuid
     user.set_password(password)
     user.save(using=self._db)
     return user
@@ -44,13 +44,22 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    ATT = 'ATT'
-    VERIZON = 'VZ'
-    VIRGIN = 'VG'
+    ATT = 'txt.att.net'
+    VERIZON = 'vtext.com'
+    VIRGIN = 'vmobl.com'
+    SPRINT = 'messaging.sprintpcs.com'
+    TMOBILE = 'tmomail.net'
+    CRICKET = 'sms.mycricket.com'
+    METROPCS = 'mymetropcs.com'
+
     CARRIER_CHOICES = (
-        (ATT, 'AT\&T'),
+        (ATT, 'AT&T'),
         (VERIZON, 'Verizon'),
         (VIRGIN, 'Virgin'),
+        (SPRINT, 'Sprint'),
+        (TMOBILE, 'T-Mobile'),
+        (CRICKET, 'Cricket'),
+        (METROPCS, "Metro PCS"),
     )
 
     HAWAII = 'HI'
@@ -89,7 +98,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
    # TODO - Figure out default prompt value
     carrier = models.CharField(
-      max_length=2,
+      max_length=100,
       choices=CARRIER_CHOICES,
       default=VIRGIN
     )
