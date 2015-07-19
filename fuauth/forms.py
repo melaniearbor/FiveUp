@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm as AuthUserCreationForm, 
 from django import forms
 from django.utils.translation import ugettext_lazy as _ 
 from django.views.generic.edit import CreateView, ModelFormMixin
+from django.http import HttpResponseRedirect
 
 
 from fuauth.models import User

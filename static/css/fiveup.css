@@ -23,10 +23,10 @@ body {
 	text-shadow: gray 0.0em 0.0em 0.2em !important;
 }
 
-p {
+/*p {
 	color: white;
 	text-align: center;
-}
+}*/
 
 .site-wrapper {
   display: table;
@@ -37,9 +37,9 @@ p {
           box-shadow: inset 0 0 100px rgba(0,0,0,.5);
 }
 
-.navbar {
-	background rgb(106,158,161);
-}
+/*.navbar {
+	background rgba(106,158,161);
+}*/
 
 .well p {
 	color: gray;

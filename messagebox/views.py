@@ -4,6 +4,7 @@ from messagebox.models import Message
 from django.utils.translation import ugettext_lazy as _ 
 from django.db import models
 from fuauth.models import User
+from fuauth.forms import PublicUserCreation
 
 # Create your views here.
 
@@ -52,8 +53,26 @@ def success(request):
     #     return reverse('add-message-view')
 
 def index(request):
+    # form = CustomUserCreation()
+    context = {'form': form}
     template_name = 'index.html'
+    print('look here I am!')
     return render(request, template_name)
+
+def contribute_link(request):
+    context = {'contriblink': contriblink}
+    template_name = 'invite_contribs.html'
+    contriblink = 'GRAY THINGS!'
+    # try:
+    #     uuid = User.objects.get(uuid=request.POST['uuid'])
+    #     contriblink = '/new/' + str(uuid) + '/'
+    # except:
+    #     pass
+    print(contriblink)
+    return contriblink
+
+def printie(request):
+    print('look here i am printie!')
 
 def dummy(request):
     template_name = 'dumyhome.html'

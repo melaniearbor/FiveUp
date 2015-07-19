@@ -1,34 +1,64 @@
 {% load staticfiles %}
+{% load widget_tweaks %}
 <html>
-    <head>
-        <title>FiveUp: Happiness Five Texts at a Time</title>
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
-        <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/parsley.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <link rel="stylesheet" href="{% static 'css/fiveup.css' %}">
+  <head>
+    <title>FiveUp: Happiness Five Texts at a Time</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/parsley.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- <link rel="stylesheet" href="{% static 'css/fiveup.css' %}"> -->
 
-        <style type="text/css">
-            .navbar {
-                background-color: rgb(106,158,161);
-            }
-            .navbar-inverse .navbar-brand, .navbar-brand:hover {
-                color: white;
-            }
-        </style>
-        {% block styles %}
+    <!-- /*        
+    <style type="text/css">
+        .navbar {
+            background-color: rgb(106,158,161);
+        }
+        .navbar-inverse .navbar-brand, .navbar-brand:hover {
+            color: white;
+        }
+    </style>*/ -->
 
-        {% endblock %}
+    {% block styles %}
+    {% endblock %}
 
-        {% block js %}
-        {% endblock %}
-    </head>
+    {% block js %}
+    {% endblock %}
+  </head>
 
-    <body>
-            {% block content %}
-            {% endblock %}
+  <body>
 
-        <!-- <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"/> -->
-    </body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+        <!-- <a class="navbar-brand" href="#">FiveUp</a> -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form method="post" class="navbar-form navbar-right" action="{% url 'django.contrib.auth.views.login' %}">
+          {% csrf_token %}
+            <div class="form-group">
+              {{ form.email|add_class:"form-control"|attr:"placeholder:email" }}
+            <!-- <input type="password" placeholder="Password" class="form-control"> -->
+            </div>
+            <div class="form-group">
+              {{ form.password|add_class:"form-control"|attr:"placeholder:password" }}
+            <!-- <input type="password" placeholder="Password" class="form-control"> -->
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+
+  <!-- <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"/> -->
+  </body>
 </html>

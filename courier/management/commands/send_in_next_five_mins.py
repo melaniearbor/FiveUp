@@ -52,7 +52,7 @@ def messagebox_pick(user):
 	chosen_message = user_messages[random.randint(0,(len(user_messages))-1)]
 	send_message = chosen_message.message_text + ' -' + chosen_message.sender_name
 	# print(send_message)
-	return send_message
+	return send_message, chosen_message
 
 def messagevault_pick():
 	print('messagevault_pick')
@@ -60,7 +60,7 @@ def messagevault_pick():
 	chosen_message = all_curated[random.randint(0,(len(all_curated))-1)]
 	send_message = chosen_message.message_text + ' -' + chosen_message.message_author_first + " " + chosen_message.message_author_last
 	print(send_message)
-	return send_message
+	return send_message, chosen_message
 
 def pick_message(user):
 
@@ -72,15 +72,15 @@ def pick_message(user):
 	if message_group == 'messagebox':
 		#TODO mark message as sent
 		# print('picking from messagebox')
-		message_to_send = messagebox_pick(user)
-		message_to_send.message_sent = True
-		message_to_send.save()
+		message_to_send, chosen_message = messagebox_pick(user)
+		chosen_message.message_sent = True
+		chosen_message.save()
 	elif message_group == 'messagevault':
 		# print('picking from messagevault')
-		message_to_send = messagevault_pick()
+		message_to_send, chosen_message = messagevault_pick()
 	else:
 		# print('user has no messages, picking from messagevault')
-		message_to_send = messagevault_pick()
+		message_to_send, chosen_message = messagevault_pick()
 
 	return message_to_send
 
@@ -109,8 +109,10 @@ def send_each_at_bat():
 		message = pick_message(i.user)
 		msg_to = i.user.phone_number + '@' + i.user.carrier  # TODO need to change carrier to give the email server data
 		send_text(message, msg_to)
+		i.sent = True
+		i.save()
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-    	check_times()
+    	send_each_at_bat()

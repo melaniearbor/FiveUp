@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="jumbotron" align="center">
+	<br>
+	<br>
+	{% if user.is_authenticated %}
+	  <h1>Hi {{ user.name|capfirst }}. <small>You're amazing.</small> 
+
+	{% else %}
+	    <h1>Whoopsie daisy.</h1>
+	    <p>You're not logged in. Try heading back to {{ home }}.</p>
+	{% endif %}
+	
+</div>
+<div class="container">
+	<h2 align="center">And now time for a message from your friends...</h2>
+	<p class="lead">Our treasure trove of messages are spectacular, for sure, but there's nothing like a special message from a good friend to pep you up.These handy-dandy sharing tools let you invite as many people as you'd like to dump all their warm and fuzzies into your queue. Then on some unannounced time in the future—bam!—a bit o' happy's comin' at ya.</p>
+</div>
+<div class="container">
+	<div class="well-container">
+		<div class='well' align="center">
+		    <a href = {% url 'add-message-view' user.uuid %}><h1>Share Me</h1></a>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="container" align="center">
+	<div class="panel panel-default" align="left">
+		<div class="panel-heading">
+			<h3 class="panel-title">Your Groovy Account Stuff</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-2"><p><b>Name</b></p></div>
+				<div class="col-md-4 "><p align="left">{{ user.name }}</p></div>
+				<div class="col-md-2"><p><b>Email</b></p></div>
+				<div class="col-md-4"><p align="left">{{ user.email }}</p></div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"><p><b>Phone Number</b></p></div>
+				<div class="col-md-4 "><p align="left">{{ user.phone_number }}</p></div>
+				<div class="col-md-2"><p><b>Mobile Carrier</b></p></div>
+				<div class="col-md-4"><p align="left">{{ user.carrier }}</p></div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
