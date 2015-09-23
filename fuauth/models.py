@@ -21,12 +21,12 @@ class UserManager(BaseUserManager):
     if not email:
       raise ValueError(_('Hey there! We need your email address.'))
     email = self.normalize_email(email)
-    user = self.model(name=name, email=email, phone_number=phone_number,
-      carrier=carrier, user_timezone=user_timezone, is_staff=is_staff, is_superuser=is_superuser,
-      last_login=now, date_joined=now)
+    user = self.model(name=name, email=email, phone_number=phone_number, carrier=carrier, user_timezone=user_timezone, 
+      is_staff=is_staff, is_superuser=is_superuser, last_login=now, date_joined=now)
     # user.uuid=uuid
     user.set_password(password)
     user.save(using=self._db)
+    print('Look I did this user manager thing!')
     return user
 
   def create_user(self, name, phone_number,

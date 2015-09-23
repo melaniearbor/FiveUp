@@ -92,6 +92,8 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'fuauth.User'
 
+LOGIN_REDIRECT_URL = '/login/'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

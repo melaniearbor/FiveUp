@@ -25,8 +25,14 @@ urlpatterns = patterns('',
         name='signup-success',),
     url(r'^signup/', fuauth.forms.PublicUserCreation.as_view(),
         name='signup-form',),
+    url(r'^register/', fuauth.views.register,
+        name='register',),
     url(r'^test-signup/', fuauth.views.testsign, 
         name='test-signup',),
+    url(r'^loginform/', fuauth.views.loginform, 
+        name='loginform',),
+    url(r'^loginuser/', fuauth.views.login_user, 
+        name='loginuser',),
 )
 
 STATIC_URL = '/static/'

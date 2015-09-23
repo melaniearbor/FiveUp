@@ -71,8 +71,6 @@ def contribute_link(request):
     print(contriblink)
     return contriblink
 
-def printie(request):
-    print('look here i am printie!')
 
 def dummy(request):
     template_name = 'dumyhome.html'

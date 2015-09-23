@@ -28,7 +28,7 @@
   </head>
 
   <body>
-
+    {{ form.errors }}
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -40,20 +40,16 @@
           </button>
         <!-- <a class="navbar-brand" href="#">FiveUp</a> -->
         </div>
+        {% if user.is_authenticated %}
         <div id="navbar" class="navbar-collapse collapse">
-          <form method="post" class="navbar-form navbar-right" action="{% url 'django.contrib.auth.views.login' %}">
-          {% csrf_token %}
-            <div class="form-group">
-              {{ form.email|add_class:"form-control"|attr:"placeholder:email" }}
-            <!-- <input type="password" placeholder="Password" class="form-control"> -->
-            </div>
-            <div class="form-group">
-              {{ form.password|add_class:"form-control"|attr:"placeholder:password" }}
-            <!-- <input type="password" placeholder="Password" class="form-control"> -->
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+            <a href="/logout/">Sign out</a>
         </div><!--/.navbar-collapse -->
+        {% else %}
+
+           <div id="navbar" class="navbar-collapse collapse">
+            <a href="/loginform/">Sign in</a>
+        </div><!--/.navbar-collapse -->
+        {% endif %}
       </div>
     </nav>
     {% block content %}
