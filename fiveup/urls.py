@@ -33,6 +33,8 @@ urlpatterns = patterns('',
         name='loginform',),
     url(r'^loginuser/', fuauth.views.login_user, 
         name='loginuser',),
+    url(r'^logoutuser/', fuauth.views.logout_user, 
+        name='logoutuser',),
 )
 
 STATIC_URL = '/static/'
