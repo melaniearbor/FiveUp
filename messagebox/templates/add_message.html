@@ -4,36 +4,38 @@
 
 {% block content %}
 
-<div class="bs-docs-header" id="content" tabindex="-1">
-  <div class="container">
-    <h1>Send some happy!</h1>
-    <p>Fill out this handy-dandy form and your pal that sent you will get your message at some unknown time in the future. Like magic. With happy sprinkles. Go you.</p>
+<div class="jumbotron">
+	<div class="bs-docs-header" id="content" tabindex="-1">
+	  <div class="container">
+	    <h1>Send some happy!</h1>
+	    <p>Fill out this handy-dandy form and your pal that sent you will get your message at some unknown time in the future. Like magic. With happy sprinkles. Go you.</p>
 
-  </div>
-</div>
+	  </div>
+	</div>
 
-<div class="container">
-	<!-- <div class="container"> -->
-		<div class="well">
-			<form id="add_message_form" method="post" action=""
-					    enctype="multipart/form-data" role="form">
+	<div class="container">
+		<!-- <div class="container"> -->
+			<div class="well">
+				<form id="add_message_form" method="post" action=""
+						    enctype="multipart/form-data" role="form">
 
-			    {% csrf_token %}
-			    <div class="form-group">
-				    <label>Your name:</label>
-				    {{ form.sender_name|add_class:"form-control" }}
-				</div>
-			    <div class="form-group">
-				    <label for="exampleInputEmail1">Your amazing message:</label>
-				    {{ form.message_text|add_class:"form-control" }}
-				</div>
-			    <!--{{ profile_form.as_p }} -->
+				    {% csrf_token %}
+				    <div class="form-group">
+					    <label>Your name:</label>
+					    {{ form.sender_name|add_class:"form-control" }}
+					</div>
+				    <div class="form-group">
+					    <label for="exampleInputEmail1">Your amazing message:</label>
+					    {{ form.message_text|add_class:"form-control" }}
+					</div>
+				    <!--{{ profile_form.as_p }} -->
 
-			    <!-- Provide a button to click to submit the form. -->
-				    <input type="submit" class="btn btn-default" name="submit" value="Add it!" />
-				</div>
-			</form>
-		</div>
-	<!-- </div> -->
+				    <!-- Provide a button to click to submit the form. -->
+					    <input type="submit" class="btn btn-default" name="submit" value="Add it!" />
+					</div>
+				</form>
+			</div>
+		<!-- </div> -->
+	</div>
 </div>
 {% endblock %}
