@@ -27,7 +27,7 @@
     {% endblock %}
   </head>
 
-  <body>
+ <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
     {{ form.errors }}
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -52,6 +52,9 @@
         {% endif %}
       </div>
     </nav>
+  </header>
+
+  <body>
     {% block content %}
     {% endblock %}
 
