@@ -3,16 +3,11 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
 <div class="jumbotron" align="center">
 	<br>
 	<br>
-	{% if user.is_authenticated %}
 	  <h1>Hi {{ user.name|capfirst }}. <small>You're amazing.</small> 
-
-	{% else %}
-	    <h1>Whoopsie daisy.</h1>
-	    <p>You're not logged in. Try heading back to {{ home }}.</p>
-	{% endif %}
 	
 </div>
 <div class="container">
@@ -47,5 +42,13 @@
 			</div>
 		</div>
 	</div>
+
+{% else %}
+<div class="jumbotron" align="center">
+    <h1>Whoopsie daisy.</h1>
+    <p>You're not logged in. Try heading back <a href="{% url "home" %}">home</a>.</p>
+</div>
+{% endif %}
+
 
 {% endblock %}
