@@ -12,12 +12,13 @@
 </div>
 <div class="container">
 	<h2 align="center">And now time for a message from your friends...</h2>
-	<p class="lead">Our treasure trove of messages are spectacular, for sure, but there's nothing like a special message from a good friend to pep you up.These handy-dandy sharing tools let you invite as many people as you'd like to dump all their warm and fuzzies into your queue. Then on some unannounced time in the future—bam!—a bit o' happy's comin' at ya.</p>
+	<p class="lead">Our treasure trove of messages are spectacular, for sure, but there's nothing like a special message from a good friend to pep you up. Copy this handy-dandy url to invite as many people as you'd like to dump all their warm and fuzzies into your queue. Then on some unannounced time in the future—bam!—a bit o' happy's comin' at ya.</p>
 </div>
 <div class="container">
 	<div class="well-container">
 		<div class='well' align="center">
-		    <a href="http://127.0.0.1:8000/new/{{ user.uuid }}"><h1>Share Me</h1></a>
+		    <!-- <a href="http://127.0.0.1:8000/new/{{ user.uuid }}"><h1>Share Me</h1></a> -->
+		    <p>{% url "home" %}new/{{ user.uuid }}</p>
 		</div>
 	</div>
 </div>
