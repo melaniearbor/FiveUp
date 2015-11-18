@@ -1,7 +1,25 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 
-<p>Good message! Would you like to add another?</p>
+<div class="jumbotron">
+	<div class="bs-docs-header" id="content" tabindex="-1">
+	  <div class="container">
+	  	<div class="row">
+		  	<div class="col-md-3">
+			  	<img src='{% static "img/FiveUpLogo-04.png" %}' width="250" height="237">
+		  	</div>
+		  	<div class="col-md-8">
+		  		<br>
+		  	<h1>Great message!</h1>
+			    <p>Want to see some unicorns? <a href="http://unicornsoncomputerpaper.tumblr.com/" target="blank">Blamzo.</a></p>
+			    <p>Want to sign up and get some happy yourself? <a href='/'>This link</a> is for you.</p>
+		    </div>
+	    </div>
+
+	  </div>
+	</div>
+
 
 {% endblock %}
