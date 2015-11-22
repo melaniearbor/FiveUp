@@ -1,1 +1,1 @@
-web: gunicorn fiveup/fiveup/wsgi.py --log-file -
+web: gunicorn fiveup/wsgi.py --log-file -
