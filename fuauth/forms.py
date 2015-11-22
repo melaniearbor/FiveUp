@@ -42,10 +42,10 @@ class PublicUserCreation(CreateView, ModelFormMixin): #AjaxTemplateMixin
         'user_timezone': _('your time zone')
     }
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["login_form"] = AuthenticationForm()
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["login_form"] = AuthenticationForm()
+    #     return context
 
 
 
