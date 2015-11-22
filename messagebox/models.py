@@ -5,16 +5,6 @@ from django.core.urlresolvers import reverse
 
 class Message(models.Model):
 
-	# def get_user_id:
-	# 	# put something here to get the uuid of the person
-	# 	# who sent the referral link
-	# 	# TODO - set AUTH_USER_MODEL to custom user model
-	# 	user_id = self.kwargs[‘uuid’]
-	# 	return user_id
-
-	# recipient = self.get_user_id()
-	# recipient = models.CharField(
-	# 	max_length=32)
 	recipient = models.ForeignKey('fuauth.User', related_name='messages')
 	sender_name = models.CharField(
 		max_length = 35
