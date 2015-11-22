@@ -143,3 +143,5 @@ TEMPLATE_DIRS = (
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+WSGI_APPLICATION = 'fiveup.wsgi.application'
