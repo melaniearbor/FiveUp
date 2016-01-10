@@ -126,7 +126,7 @@ def send_each_at_bat():
         msg_to = i.user.phone_number + '@' + i.user.carrier  # TODO need to change carrier to give the email server data
         # send_text(message, msg_to)
         mail = EmailMultiAlternatives(
-          subject="",
+          subject="FiveUp",
           body=message,
           from_email="Five Up <app44043297@heroku.com>",
           to=[msg_to],
