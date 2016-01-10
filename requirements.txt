@@ -11,4 +11,7 @@ ipdb==0.8
 ipython==2.3.1
 psycopg2==2.6.1
 pytz==2014.10
+sendgrid==1.4.0
+sendgrid-django==1.4.0
+smtpapi==0.2.0
 static3==0.6.1
