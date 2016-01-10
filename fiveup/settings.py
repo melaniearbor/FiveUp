@@ -142,7 +142,9 @@ TEMPLATE_DIRS = (
     ),
 )
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = "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"
 
 WSGI_APPLICATION = 'fiveup.wsgi.application'
 

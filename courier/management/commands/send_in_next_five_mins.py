@@ -11,7 +11,9 @@ from courier.models import UserSendTime
 from fuauth.models import User
 from messagevault.models import CuratedMessage
 from messagebox.models import Message
-import sendgrid
+# import sendgrid
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 
 def check_times():
     now = timezone.now()
@@ -122,7 +124,15 @@ def send_each_at_bat():
     for i in at_bat:
         message = pick_message(i.user)
         msg_to = i.user.phone_number + '@' + i.user.carrier  # TODO need to change carrier to give the email server data
-        send_text(message, msg_to)
+        # send_text(message, msg_to)
+        mail = EmailMultiAlternatives(
+          subject="",
+          body=message,
+          from_email="Five Up <app44043297@heroku.com>",
+          to=[msg_to],
+          # headers={"Reply-To": "support@sendgrid.com"}
+        )
+        mail.send()
         i.sent = True
         i.save()
 
