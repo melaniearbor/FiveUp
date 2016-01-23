@@ -21,9 +21,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '(*bef#kem$8-o%_1pqgo&jlhnyp4*%he9fysnjtl^ta%+0e0*-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -49,7 +49,8 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'django_modalview',
     'parsley',
-    'courier'
+    'courier',
+    'django_pdb',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,6 +61,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_pdb.middleware.PdbMiddleware',
 )
 
 ROOT_URLCONF = 'fiveup.urls'
@@ -77,15 +79,17 @@ WSGI_APPLICATION = 'fiveup.wsgi.application'
 #     }
 # }
 
+
+# overridden by dj-database-url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fiveup',
-        'USER': 'melanie',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'fiveup',
+#         'USER': 'melanie',
+#         'PASSWORD': '',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
 }
 
 # Internationalization
@@ -150,7 +154,9 @@ WSGI_APPLICATION = 'fiveup.wsgi.application'
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] =  dj_database_url.config(default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3"))
+
+print(DATABASES['default'])
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
