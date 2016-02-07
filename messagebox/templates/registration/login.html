@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block js %}
+
+{% endblock %}
+
 {% block content %}
 
 {% if user.is_authenticated %}
@@ -18,7 +22,10 @@
 	<div class="well-container">
 		<div class='well' align="center">
 		    <!-- <a href="http://127.0.0.1:8000/new/{{ user.uuid }}"><h1>Share Me</h1></a> -->
-		    <p>{% url "home" %}new/{{ user.uuid }}</p>
+		    <p><a href="{% url "home" %}new/{{ user.uuid }}">Share this</a></p>
+		    <a href="http://twitter.com/share?text=An%20Awesome%20Link&url=google.com">
+			Share This on Twitter</a>
+
 		</div>
 	</div>
 </div>
@@ -56,3 +63,4 @@
 
 
 {% endblock %}
+
