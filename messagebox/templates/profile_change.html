@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container" align="center">
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="well" align="center">
+		<h3>Change your deets, {{ user.name|capfirst }}!</h3>
+		<form class="form-horizontal" action="" method="post">
+			{% csrf_token %}
+						<div class="form-group row">
+                <label for="id_name" class="col-sm-offset-2 col-xs-3 col-sm-3 col-md-3 control-label">Your phone number:</label>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                {{ form.phone_number|add_class:"form-control required" }}
+	            </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-offset-2 col-sm-3 control-label">Phone carrier:</label>
+                <div class="col-sm-4">
+                {{ form.carrier|add_class:"form-control required" }}
+	            </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-offset-2 col-sm-3 control-label">Your timezone:</label>
+                <div class="col-sm-4">
+                {{ form.user_timezone|add_class:"form-control required" }}
+	            </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-offset-2 col-sm-3 control-label">Keep 'em coming!</label>
+                <div class="col-sm-3 checkbox" align="center">
+	                {{ form.is_active|add_class:"form-group required" }}uncheck to stop messages
+	            </div>
+            </div>
+            <div class="form-group">
+				<div class="col-sm-offset-5 col-sm-2">
+					<button type="submit" class="btn btn-success">Change the things!</button>
+				</div>
+				<div class="col-sm-1">
+					<a href="/login/" class="btn btn-default" mode="button">Cancel</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

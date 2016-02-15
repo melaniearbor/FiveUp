@@ -1,10 +1,11 @@
 from django.contrib.auth.forms import UserCreationForm as AuthUserCreationForm, UserChangeForm as AuthUserChangeForm
 from django import forms
 from django.utils.translation import ugettext_lazy as _ 
-from django.views.generic.edit import CreateView, ModelFormMixin
+from django.views.generic.edit import CreateView, ModelFormMixin, UpdateView
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 
 from fuauth.models import User
@@ -46,6 +47,17 @@ class PublicUserCreation(CreateView, ModelFormMixin): #AjaxTemplateMixin
     #     context = super().get_context_data(**kwargs)
     #     context["login_form"] = AuthenticationForm()
     #     return context
+
+class FiveUUserChangeForm(UpdateView):
+
+    template_name = 'profile_change.html'
+    model = User
+    fields = ['phone_number', 'carrier', 'user_timezone', 'is_active']
+    success_url = "/login/"
+
+    def get_object(self):
+        return User.objects.get(uuid=self.kwargs.get("uuid"))
+
 
 
 

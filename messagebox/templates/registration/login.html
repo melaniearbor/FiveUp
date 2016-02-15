@@ -34,7 +34,7 @@
 <div class="container" align="center">
 	<div class="panel panel-default" align="left">
 		<div class="panel-heading">
-			<h3 class="panel-title">Your Groovy Account Stuff</h3>
+			<h2 class="panel-title">Your Groovy Account Stuff   <a href="{% url "home" %}changeprofile/{{ user.uuid }}" class="btn btn-default" role="button"><small>Edit</small></a> </h2>
 		</div>
 		<div class="panel-body">
 			<div class="row">
@@ -50,7 +50,17 @@
 				<div class="col-md-4"><p align="left">{{ user.carrier }}</p></div>
 			</div>
 			<div class="row">
-				<div class="col-md-4"><p><a href="/password_change">Change your password</a></p></div>
+				<div class="col-md-2"><p><b>Active?</b></p></div>
+				<div class="col-md-4 ">
+					{% if user.is_active %}
+						<font color="green">Yep! I'm getting messages!<p>
+					{% else %}
+						<font color="orange">No messages for me right now.</p>
+					{% endif %}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"><h2><a href="/password_change" class="btn btn-default" role="button"><small>Change password</small></a></h2></div>
 		</div>
 	</div>
 
