@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block js %}
 
@@ -55,9 +56,36 @@
 
 {% else %}
 <div class="jumbotron" align="center">
-    <h1>Whoopsie daisy.</h1>
-    <p>You're not logged in. Try again, or click <a href="/password_reset">here</a> if your password has wondered out 
-    	of your head to the land of lost passwords.</p>
+    <h1>Hi there, pumpkin. <small>Log your little gourd in.</small></h1><br><br>
+    <div class="container" align="center">
+		<div class="form-group">
+		<form class="form-horizontal" action="/login/" method="post">
+				{% csrf_token %}
+				{{ form.non_field_errors }}
+				<div class="form-group row">
+                <label for="id_name" class="col-sm-offset-2 col-xs-3 col-sm-3 col-md-3 control-label">Email shmemail:</label>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+            	{{ form.username.errors }}
+                {{ form.username|add_class:"form-control required"|attr:"type:email"}}
+	            </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-offset-2 col-sm-3 control-label">Pretty password:</label>
+                <div class="col-sm-4">
+            	{{ form.password.errors }}
+                {{ form.password|add_class:"form-control required"|attr:"type:password" }}
+	            </div>
+            </div>
+            <div class="form-group">
+				<div class="col-sm-offset-5 col-sm-1">
+				<button type="submit" class="btn btn-default">Do it. Do it now!</button>
+				</div>
+			</div>
+			</form>
+			<small>or click <a href="/password_reset">here</a> if your password has wondered out 
+				of your head to the land of lost passwords.</small>
+		</div>
+	</div>
 </div>
 {% endif %}
 
