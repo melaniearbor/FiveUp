@@ -36,8 +36,8 @@ def check_for_unsent_user_messages(user):
         True if user has messages 
     """
 
-    uuid = user.uuid
-    if Message.objects.filter(recipient__uuid=uuid, message_sent=False)==[]:
+    recipient = user
+    if Message.objects.filter(recipient=recipient, message_sent=False)==[]:
         return False
     else:
         return True
