@@ -37,7 +37,7 @@ def check_for_unsent_user_messages(user):
     """
 
     recipient = user
-    if Message.objects.filter(recipient=recipient, message_sent=False)==[]:
+    if len(Message.objects.filter(recipient=recipient, message_sent=False))==0:
         return False
     else:
         return True
@@ -51,8 +51,8 @@ def which_messages():
 
 def messagebox_pick(user):
     # print('messagebox_pick')
-    user_messages = Message.objects.filter(recipient=user)
-    chosen_message = user_messages[random.randint(0,(len(user_messages))-1)]
+    unsent_user_messages = Message.objects.filter(recipient=user, message_sent=False)
+    chosen_message = unsent_user_messages[random.randint(0,(len(unsent_user_messages))-1)]
     send_message = chosen_message.message_text + ' -' + chosen_message.sender_name
     # print(send_message)
     return send_message, chosen_message
@@ -62,7 +62,7 @@ def messagevault_pick():
     all_curated = CuratedMessage.objects.all()
     chosen_message = all_curated[random.randint(0,(len(all_curated))-1)]
     send_message = chosen_message.message_text + ' -' + chosen_message.message_author_first + " " + chosen_message.message_author_last
-    print(send_message)
+    # print(send_message)
     return send_message, chosen_message
 
 def pick_message(user):
@@ -72,15 +72,14 @@ def pick_message(user):
     if check_for_unsent_user_messages(user) == True:
         # print('user has unsent messages')
         message_group = which_messages()
-    if message_group == 'messagebox':
-        #TODO mark message as sent
-        # print('picking from messagebox')
-        message_to_send, chosen_message = messagebox_pick(user)
-        chosen_message.message_sent = True
-        chosen_message.save()
-    elif message_group == 'messagevault':
-        # print('picking from messagevault')
-        message_to_send, chosen_message = messagevault_pick()
+        if message_group == 'messagebox':
+            # print('picking from messagebox')
+            message_to_send, chosen_message = messagebox_pick(user)
+            chosen_message.message_sent = True
+            chosen_message.save()
+        elif message_group == 'messagevault':
+            # print('picking from messagevault')
+            message_to_send, chosen_message = messagevault_pick()
     else:
         # print('user has no messages, picking from messagevault')
         message_to_send, chosen_message = messagevault_pick()
