@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpRequest
 
 from fuauth.forms import FUserCreationForm
+from fuauth.models import User
 
 # Create your views here.
 

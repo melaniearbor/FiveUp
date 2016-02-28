@@ -144,6 +144,11 @@ TEMPLATE_DIRS = (
     ),
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (  
+    "django.core.context_processors.request",
+    "django.contrib.auth.context_processors.auth",
+)
+
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = "sgbackend.SendGridBackend"
 SENDGRID_API_KEY = "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"
