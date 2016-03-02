@@ -8,8 +8,8 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container" align="center">
-        <br><br>
-        <img src='{% static "img/FiveUpLogo-04.png" %}' width="450" height="428">
+        <br>
+        <img class="img-responsive" src='{% static "img/FiveUpLogo-04.png" %}' width="450" height="428">
         <p>We're spreading happy, five texts at a time. <br>Sign up and get a little happy.</p>
         <br>
         <br>
@@ -22,37 +22,45 @@
             <form data-parsley-validate method="post" action="/register/">
 
                     {% csrf_token %}
-                    <div class="form-group col-xs-4" id="id_nameDiv">
-                        <label for="id_name">Your name:</label>
-                        {{ form.name|add_class:"form-control required"}}
+                    <div class="container">
+                    <div class="row">
+                        <div class="form-group col-md-4" id="id_nameDiv">
+                            <label for="id_name">Your name:</label>
+                            {{ form.name|add_class:"form-control required"}}
+                        </div>
+                        <div class="form-group col-md-4" id="emailDiv">
+                            <label>Your email address:</label>
+                            {{ form.email|add_class:"form-control required"|attr:"data-parsley-type:email" }}
+                        </div>
+                        <div class="form-group col-md-4" id="phoneDiv">
+                            <label>Your phone number:</label>
+                            {{ form.phone_number|add_class:"form-control required" }}
+                        </div>
                     </div>
-                    <div class="form-group col-xs-4" id="emailDiv">
-                        <label>Your email address:</label>
-                        {{ form.email|add_class:"form-control required"|attr:"data-parsley-type:email" }}
-                    </div>
-                    <div class="form-group col-xs-4" id="phoneDiv">
-                        <label>Your phone number:</label>
-                        {{ form.phone_number|add_class:"form-control required" }}
-                    </div>
-                    <div class="form-group col-xs-4" id="carrierDiv">
-                        <label>Who provides your phone service?</label>
-                        {{ form.carrier|add_class:"form-control required" }}
-                    </div>
-                    <div class="form-group col-xs-4" id="zoneDiv">
-                        <label>What time zone are you in?</label>
-                        {{ form.user_timezone|add_class:"form-control required" }}
-                    </div>
-                    <div class="form-group col-xs-4" id="passDiv">
-                        <label>Your super secret password:</label>
-                        {{ form.password|add_class:"form-control required"|attr:"type:password" }}
+                    <div class="row">
+                        <div class="form-group col-md-4" id="carrierDiv">
+                            <label>Who provides your phone service?</label>
+                            {{ form.carrier|add_class:"form-control required" }}
+                        </div>
+                        <div class="form-group col-md-4" id="zoneDiv">
+                            <label>What time zone are you in?</label>
+                            {{ form.user_timezone|add_class:"form-control required" }}
+                        </div>
+                        <div class="form-group col-md-4" id="passDiv">
+                            <label>Your super secret password:</label>
+                            {{ form.password|add_class:"form-control required"|attr:"type:password" }}
+                        </div>
                     </div>
                     <div>
                         <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
                     </div>
-                    <div class="col-xs-12" align="center">
-                        <button type="submit" class="btn btn-default btn-success">Do it!</button>
-                        <button class="btn btn-default">Cancel</button>
+                    <div class="row">
+                        <div class="col-xs-12" align="center">
+                            <button type="submit" class="btn btn-default btn-success">Do it!</button>
+                            <button class="btn btn-default">Cancel</button>
+                        </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>

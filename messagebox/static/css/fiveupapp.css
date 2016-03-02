@@ -1,0 +1,16 @@
+
+
+.flex {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+body { 
+	padding-bottom: 70px; 
+}
+
+.long-link {
+/*    table-layout: fixed;*/
+    word-wrap: break-word;
+}

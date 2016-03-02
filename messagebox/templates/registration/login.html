@@ -10,47 +10,48 @@
 
 {% if user.is_authenticated %}
 <div class="jumbotron" align="center">
+	<br><br>
 	<h1>Hi {{ user.name|capfirst }}. <small>You're amazing.</small>
 </div>
 
-</div>
-
 <div class="container">
-	<div class="row">
-		<div class="col-sm-12">
-		    <div class="row">
-			    <div class="col-xs-4">
-			        <img src='{% static "img/MoreHappy-01.png" %}' width="350" height="328">
-			    </div>
-			    <div class="col-xs-6">
-			        <h3>Want some more happy?</h3>
-			        <p>Have your friends send you happy messages at a mystery time in the future! <br>
-		        	Or send YOURSELF a message that you're an awesome person full of pizazz! <br> 
-		        	If that sounds awesome, click that neato link down there. Or send it to a friend. Or maybe send it to your mom if you have a super rad mom.</p>
-			        <p>Love the link. Be. the. link. </p>
+    <div class="row">
+	    <div class="col-md-6" align="center">
+	        <img class="img-responsive" src='{% static "img/MoreHappy-01.png" %}'>
+	    </div>
+	    <div class="col-md-6">
+	        <h3>Want some more happy?</h3>
+	        <p>Have your friends send you happy messages at a mystery time in the future!
+        	Or send YOURSELF a message that you're an awesome person full of pizazz!
+        	If that sounds awesome, click that neato link down there. Or send it to a friend. Or maybe send it to your mom if you have a super rad mom.</p>
+	        <p>Love the link. Be. the. link. </p>
 
-			        <div class="well">
-			        	<p><b><a href="/new/{{ user.uuid }}">{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}</a></b></p>
-			        </div>
-		        	<hr>
-			        <h3>Or get social!</h3>
-			        <p>Click these fancy icons to share your link with your internet friendsies.</p>
-			        <div class="row">
-				        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.META.HTTP_HOST }}/new/{{ user.uuid }}"
-					    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-					    <img src='{% static "img/facebook.png" %}'></a>
+	        <div class="well long-link">
+	        	<p><b><a href="/new/{{ user.uuid }}">{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}</a></b></p>
+	        </div>
+        	<hr>
 
-					    <a class="share-twitter" href="https://twitter.com/intent/tweet?text=Send me some happy!&url=https%3A%2F%2F{% filter urlencode %}{{ request.META.HTTP_HOST }}{% endfilter %}"
-					    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-					    <img src='{% static "img/twitter.png" %}'></a>
-
-		        		<a href="https://plus.google.com/share?url={{ request.META.HTTP_HOST }}/new/{{ user.uuid }}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-					    <img src='{% static "img/googleplus.png" %}'></a>
-				    </div>
-			    </div>
+    <div class="row">
+    	<div class="col-md-12">
+	    	<h3>Or get social!</h3>
+	        <p>Click these fancy icons to share your link with your internet friendsies.</p>
+	    	<div class="col-xs-2">
+		        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.META.HTTP_HOST }}/new/{{ user.uuid }}"
+			    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+			    <img class="img-responsive" src='{% static "img/facebook.png" %}'></a> 
 			</div>
-		</div>
-	</div>
+			<div class="col-xs-2">
+				<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Send me some happy!&url=https%3A%2F%2F{% filter urlencode %}{{ request.META.HTTP_HOST }}{% endfilter %}"
+			    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+			    <img class="img-responsive" src='{% static "img/twitter.png" %}'></a>
+		    </div>
+			<div class="col-xs-2">
+	    		<a href="https://plus.google.com/share?url={{ request.META.HTTP_HOST }}/new/{{ user.uuid }}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+			    <img class="img-responsive" src='{% static "img/googleplus.png" %}'></a>
+		    </div>
+	    </div>
+    </div>
+        	<hr>
 </div>	
 
 <div class="row"><hr></div>
@@ -99,21 +100,21 @@
 				{% csrf_token %}
 				{{ form.non_field_errors }}
 				<div class="form-group row">
-                <label for="id_name" class="col-sm-offset-2 col-xs-3 col-sm-3 col-md-3 control-label">Email shmemail:</label>
-                <div class="col-xs-4 col-sm-4 col-md-4">
+                <label for="id_name" class="col-md-offset-2control-label">Email shmemail:</label>
+                <div class="col-md-4">
             	{{ form.username.errors }}
                 {{ form.username|add_class:"form-control required"|attr:"type:email"}}
 	            </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-offset-2 col-sm-3 control-label">Pretty password:</label>
-                <div class="col-sm-4">
+                <label class="col-md-offset-2 col-md-3 control-label">Pretty password:</label>
+                <div class="col-md-4">
             	{{ form.password.errors }}
                 {{ form.password|add_class:"form-control required"|attr:"type:password" }}
 	            </div>
             </div>
             <div class="form-group">
-				<div class="col-sm-offset-5 col-sm-1">
+				<div class="col-md-offset-5 col-md-1">
 				<button type="submit" class="btn btn-default">Do it. Do it now!</button>
 				</div>
 			</div>
