@@ -51,6 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     TMOBILE = 'tmomail.net'
     CRICKET = 'sms.mycricket.com'
     METROPCS = 'mymetropcs.com'
+    PROJECTFI = 'msg.fi.google.com'
 
     CARRIER_CHOICES = (
         (ATT, 'AT&T'),
@@ -60,6 +61,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         (TMOBILE, 'T-Mobile'),
         (CRICKET, 'Cricket'),
         (METROPCS, "Metro PCS"),
+        (PROJECTFI, 'Project Fi')
     )
 
     HAWAII = 'HI'
