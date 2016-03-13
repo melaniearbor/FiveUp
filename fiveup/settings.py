@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'django_modalview',
     'parsley',
     'courier',
+    'email_log',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -150,7 +151,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = "sgbackend.SendGridBackend"
+EMAIL_BACKEND = 'email_log.backends.EmailBackend'
+EMAIL_LOG_BACKEND = "sgbackend.SendGridBackend"
 SENDGRID_API_KEY = "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"
 DEFAULT_FROM_EMAIL = "Five Up <app44043297@heroku.com>"
 
