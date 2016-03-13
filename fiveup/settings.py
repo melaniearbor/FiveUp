@@ -23,7 +23,7 @@ SECRET_KEY = '(*bef#kem$8-o%_1pqgo&jlhnyp4*%he9fysnjtl^ta%+0e0*-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -152,6 +152,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = "sgbackend.SendGridBackend"
 SENDGRID_API_KEY = "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"
+DEFAULT_FROM_EMAIL = "Five Up <app44043297@heroku.com>"
 
 WSGI_APPLICATION = 'fiveup.wsgi.application'
 
