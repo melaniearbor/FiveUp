@@ -41,7 +41,7 @@
 			    <img class="img-responsive" src='{% static "img/facebook.png" %}'></a> 
 			</div>
 			<div class="col-xs-2">
-				<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Send me some happy!&url=https%3A%2F%2F{% filter urlencode %}{{ request.META.HTTP_HOST }}{% endfilter %}"
+				<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Send me some happy!&url=https%3A%2F%2F{% filter urlencode %}{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}{% endfilter %}"
 			    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
 			    <img class="img-responsive" src='{% static "img/twitter.png" %}'></a>
 		    </div>
