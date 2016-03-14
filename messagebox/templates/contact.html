@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block content %}
+<br>
+<br>
+<br>
+
+<div class="page-header">
+    <div class="row">
+    	<div class="col-sm-12">
+        	<div class="container text-center">
+                <h1 class="element">Say hello, why don't ya?</h1>
+                <span>Tweet me, tweet me, say that you'll tweet me<br>(or find us on Facebook, but<br>we couldn't think of anything witty for that).<br><br></span>
+                <div class="button-group">
+                	<button class="btn btn-default">
+                		<a href="https://www.twitter.com/hifiveup">
+						    <img src='{% static "img/twitter.png" %}'/>
+					    </a>
+					</button>
+                	<button class="btn btn-default">
+                		<a href="https://www.facebook.com/fiveupapp">
+						    <img src='{% static "img/facebook.png" %}'/>
+					    </a>
+					</button>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+                    
+
+{% endblock %}

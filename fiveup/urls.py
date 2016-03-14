@@ -37,6 +37,8 @@ urlpatterns = patterns('',
         name='logoutuser',),
     url(r'^changeprofile/(?P<uuid>.+)/$', fuauth.forms.FiveUUserChangeForm.as_view(), 
         name='changeprofile',),
+    url(r'^contact/', messagebox.views.contact, 
+        name='contact',),
 )
 
 STATIC_URL = '/static/'

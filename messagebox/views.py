@@ -59,6 +59,10 @@ def index(request):
     print('look here I am!')
     return render(request, template_name)
 
+def contact(request):
+    template_name = 'contact.html'
+    return render(request, template_name)
+
 def contribute_link(request):
     context = {'contriblink': contriblink}
     template_name = 'invite_contribs.html'

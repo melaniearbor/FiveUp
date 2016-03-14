@@ -14,3 +14,7 @@ body {
 /*    table-layout: fixed;*/
     word-wrap: break-word;
 }
+
+.login-form {
+	max-width: 10px;
+}

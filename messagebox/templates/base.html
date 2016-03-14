@@ -11,16 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/fiveupapp.css' %}">
 
-    <!-- /*        
-    <style type="text/css">
-        .navbar {
-            background-color: rgb(106,158,161);
-        }
-        .navbar-inverse .navbar-brand, .navbar-brand:hover {
-            color: white;
-        }
-    </style>*/ -->
-
     {% block styles %}
     {% endblock %}
 
@@ -43,6 +33,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+              <li><a href="/contact/">Say Hi</a></li>
               <li><a href="/login/">{{ user.name|capfirst }}'s Magical Account</a></li>
               <li><a href="/logoutuser/">Log Out</a></li>
             </ul>
@@ -62,16 +53,10 @@
             <a class="navbar-brand" href="/">FiveUp: Spreading Happy</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form pull-right" action="/login/" method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                  <input type="text" name="username" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group">
-                  <input type="password" name="password" placeholder="Password" class="form-control">
-                </div>
-                <button type="submit" class="navbar-btn btn btn-success">Sign in</button>
-              </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/contact/">Say Hi</a></li>
+              <li><a href="/login/">Log In</a></li>
+            </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
