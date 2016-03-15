@@ -23,9 +23,9 @@ def divide_users(group_a, group_b, group_c):
   num_of_users = len(all_users)
   remainder_users = num_of_users%3
   users_divided_by_three = math.floor(num_of_users/3)
-  group_a_total = users_divided_by_three
-  group_b_total = users_divided_by_three
-  group_c_total = users_divided_by_three + remainder_users
+  group_a_total = int(users_divided_by_three)
+  group_b_total = int(users_divided_by_three)
+  group_c_total = int(users_divided_by_three) + remainder_users
   group_b_range = group_a_total + group_b_total
   group_c_range = group_b_range + group_c_total
   users_list = list(all_users)
@@ -45,7 +45,6 @@ def create_schedule():
   """
   
   today = date.today()
-  # day_start = datetime.datetime(today.year, today.month, today.day, 6,00,00)
   day_start = make_aware(datetime.datetime(today.year, today.month, today.day,6,0,0,000000),get_current_timezone())
   schedule = []
   start_time = day_start
@@ -54,14 +53,14 @@ def create_schedule():
     send_time = start_time + datetime.timedelta(seconds=random_seconds)
     schedule.append(send_time)
     start_time = send_time
-    #print(schedule)
   return schedule 
 
 def record_user_send_times(group):
   group_schedule = create_schedule()
   for user in group:
-    for time in group_schedule:
-      user_send_time = UserSendTime.objects.create(scheduled_time = time, user = user)
+    if user.is_active==True:
+      for time in group_schedule:
+        user_send_time = UserSendTime.objects.create(scheduled_time = time, user = user)
 
 
 
@@ -71,7 +70,3 @@ class Command(BaseCommand):
     record_user_send_times(group_q)
     record_user_send_times(group_r)
     record_user_send_times(group_s)
-    # group_a_schedule = create_schedule()
-    # group_b_schedule = create_schedule()
-    # group_c_schedule = create_schedule()
-    # print(group_a_schedule, group_b_schedule, group_c_schedule)
