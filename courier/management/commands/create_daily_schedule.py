@@ -58,7 +58,7 @@ def create_schedule():
 def record_user_send_times(group):
   group_schedule = create_schedule()
   for user in group:
-    if user.is_active==True:
+    if user.receiving_messages==True & user.is_active==True:
       for time in group_schedule:
         user_send_time = UserSendTime.objects.create(scheduled_time = time, user = user)
 

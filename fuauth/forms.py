@@ -7,8 +7,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
-
 from fuauth.models import User
+from courier.models import UserSendTime
 
 
 class FUserCreationForm(forms.ModelForm):
@@ -52,8 +52,9 @@ class FiveUUserChangeForm(UpdateView):
 
     template_name = 'profile_change.html'
     model = User
-    fields = ['phone_number', 'carrier', 'user_timezone', 'is_active']
+    fields = ['phone_number', 'carrier', 'user_timezone', "receiving_messages"]
     success_url = "/login/"
+
 
     def get_object(self):
         return User.objects.get(uuid=self.kwargs.get("uuid"))

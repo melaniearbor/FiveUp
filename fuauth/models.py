@@ -138,7 +138,8 @@ class User(AbstractBaseUser, PermissionsMixin):
       max_length=32, 
       auto=True
     )
-    # uuid = '12345678'
+
+    receiving_messages = models.BooleanField(default=True)
 
     objects = UserManager()
 
