@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, ModelFormMixin
-from messagebox.models import Message
 from django.utils.translation import ugettext_lazy as _ 
 from django.db import models
+
+
 from fuauth.models import User
 from fuauth.forms import PublicUserCreation
+from messagebox.models import Message
 
 # Create your views here.
+
+
 
 class CreateMessageView(CreateView, ModelFormMixin):
 
