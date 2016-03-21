@@ -14,9 +14,13 @@
         <br>
         <br>
         <br>
+{% if user.is_authenticated %}
+
+{% else %}
         <h2>Let's sign up!</h2>
         <p>It'll be awesome.</p>
   <!-- <div class="jumbotron"> -->
+
         <a name='signup'></a>
         <div class="form-group">
             <form data-parsley-validate method="post" action="/register/">
@@ -60,11 +64,21 @@
                             <button class="btn btn-default">Cancel</button>
                         </div>
                     </div>
+                    <div clas="row">
+                        <div class="col-xs-12" align="center">
+                            <br><br>
+                            <small>The FiveUp service is FREE, though message and data rates <br>
+                                from your phone carrier may apply. <br>
+                                Make sure you know about your texting and data plan. <br>
+                                Expensive messages are not happy.</small>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
-    </div>
-</div>
+        {% endif %}
+    </div> <!-- container -->
+</div> <!-- Jumbotron -->
 
 {% endblock %}
 
