@@ -87,22 +87,6 @@ def pick_message(user):
     return message_to_send
 
 def send_text(message, msg_to):
-    # msg = email.message_from_string(str(message))
-    # msg['From'] = "melanie_crutchfield@hotmail.com"
-    # msg['To'] = msg_to
-    # msg['Subject'] = "" #can leave blank
-
-    # s = smtplib.SMTP("smtp.live.com",587)
-    # s.ehlo()
-    # s.starttls() 
-    # s.ehlo()
-    # s.login()
-    # #to sending email account
-
-    # # s.sendmail(sender, recipient phone number, message) 6192032488@vmobl.com
-    # s.sendmail("melanie_crutchfield@hotmail.com", msg_to, msg.as_string())
-
-    # s.quit()
 
 
     sg = sendgrid.SendGridClient('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')
@@ -116,20 +100,17 @@ def send_text(message, msg_to):
     status, msg = sg.send(message)
 
 
-# API Key SendGrid: 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
 
 def send_each_at_bat():
     at_bat = check_times()
     for i in at_bat:
         message = pick_message(i.user)
-        msg_to = i.user.phone_number + '@' + i.user.carrier  # TODO need to change carrier to give the email server data
-        # send_text(message, msg_to)
+        msg_to = i.user.phone_number + '@' + i.user.carrier
         mail = EmailMultiAlternatives(
           subject="FiveUp",
           body=message,
           from_email="Five Up <app44043297@heroku.com>",
           to=[msg_to],
-          # headers={"Reply-To": "support@sendgrid.com"}
         )
         mail.send()
         i.sent = True

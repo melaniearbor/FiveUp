@@ -149,23 +149,6 @@ def find_time_owner(time, all_schedules):
     return group
 
 
-# def send_text():
-#   msg = email.message_from_string('warning')
-#   msg['From'] = "example@hotmail.fr"
-#   msg['To'] = "example@hotmail.fr"
-#   msg['Subject'] = "helOoooOo"
-
-#   s = smtplib.SMTP("smtp.live.com",587)
-#   s.ehlo()
-#   s.starttls() 
-#   s.ehlo()
-#   s.login('example@hotmail.fr', 'pass')
-
-# # s.sendmail(sender, recipient phone number, message)
-#   s.sendmail("example@hotmail.fr", "example@hotmail.fr", msg.as_string())
-
-#   s.quit()
-
 def send_text(message, msg_to):
   msg = email.message_from_string(str(message))
   msg['From'] = "happy@fiveup.com"

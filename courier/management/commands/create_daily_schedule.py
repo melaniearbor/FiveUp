@@ -16,10 +16,6 @@ group_b = []
 group_c = []
 
 def divide_users(group_a, group_b, group_c):
-  # all_users = User.objects.all()
-  # group_a = []
-  # group_b = []
-  # group_c = []
   num_of_users = len(all_users)
   remainder_users = num_of_users%3
   users_divided_by_three = math.floor(num_of_users/3)
