@@ -27,7 +27,7 @@ def register(request):
     registered = False
 
     def send_confirmation_text(now_phone, now_carrier):
-        message = "Hey there, partner! Hold on to your hat, because you're about to get lots of happy. Starting tomorrow. Doodle-oodle-oo. Wah wah wah."
+        message = "Hey there, partner! Hold on to your hat, because you're about to get lots of happy. Starting tomorrow. Doodle-oodle-oo."
         msg_to = now_phone + '@' + now_carrier
         mail = EmailMultiAlternatives(
           subject="FiveUp",
