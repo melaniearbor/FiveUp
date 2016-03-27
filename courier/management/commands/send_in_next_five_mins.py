@@ -11,7 +11,6 @@ from courier.models import UserSendTime
 from fuauth.models import User
 from messagevault.models import CuratedMessage
 from messagebox.models import Message
-# import sendgrid
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 
@@ -20,7 +19,7 @@ def check_times():
     send_times = UserSendTime.objects.all()
     at_bat = []
     for i in send_times:
-        if timezone.localtime(i.scheduled_time) < timezone.localtime(now) and i.sent == False:
+        if timezone.localtime(i.scheduled_time) < timezone.localtime(now) and not i.sent and i.user.receiving_messages:
             at_bat.append(i)
     return at_bat
 
@@ -43,18 +42,14 @@ def check_for_unsent_user_messages(user):
         return True
 
 def which_messages():
-    # print('which messages')
     message_options = ['messagebox', 'messagevault']
     picker = random.randint(0,1)
-    # print(message_options[picker])
     return message_options[picker]
 
 def messagebox_pick(user):
-    # print('messagebox_pick')
     unsent_user_messages = Message.objects.filter(recipient=user, message_sent=False)
     chosen_message = unsent_user_messages[random.randint(0,(len(unsent_user_messages))-1)]
     send_message = chosen_message.message_text + ' -' + chosen_message.sender_name
-    # print(send_message)
     return send_message, chosen_message
 
 def messagevault_pick():
@@ -62,7 +57,6 @@ def messagevault_pick():
     all_curated = CuratedMessage.objects.all()
     chosen_message = all_curated[random.randint(0,(len(all_curated))-1)]
     send_message = chosen_message.message_text + ' -' + chosen_message.message_author_first + " " + chosen_message.message_author_last
-    # print(send_message)
     return send_message, chosen_message
 
 def pick_message(user):
@@ -70,18 +64,14 @@ def pick_message(user):
     user = user
 
     if check_for_unsent_user_messages(user) == True:
-        # print('user has unsent messages')
         message_group = which_messages()
         if message_group == 'messagebox':
-            # print('picking from messagebox')
             message_to_send, chosen_message = messagebox_pick(user)
             chosen_message.message_sent = True
             chosen_message.save()
         elif message_group == 'messagevault':
-            # print('picking from messagevault')
             message_to_send, chosen_message = messagevault_pick()
     else:
-        # print('user has no messages, picking from messagevault')
         message_to_send, chosen_message = messagevault_pick()
 
     return message_to_send
