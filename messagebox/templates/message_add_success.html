@@ -14,7 +14,9 @@
 		  		<br>
 		  	<h1>Great message!</h1>
 			    <p>Want to see some unicorns? <a href="http://unicornsoncomputerpaper.tumblr.com/" target="blank">Blamzo.</a></p>
+			    {% if not user.is_authenticated %}
 			    <p>Want to sign up and get some happy yourself? <a href='/'>This link</a> is for you.</p>
+			    {% endif %}
 		    </div>
 	    </div>
 

@@ -11,11 +11,24 @@
 		  	<div class="col-md-3">
 			  	<img class="img-responsive" src='{% static "img/FiveUpLogo-04.png" %}' width="250" height="237">
 		  	</div>
+
+		  	{% if user == view.recipient %}
+
 		  	<div class="col-md-8">
 		  		<br>
-		  	<h1>Send some happy!</h1>
-			    <p>Hi! Your friend sent you this link, right? Well, fill out the form, and then at some point in the future your friend will get your happy message! Like magic. <b>With happy sprinkles.</b> Go you.</p>
+			  	<h1>Send yourself some happy!</h1>
+			    <p>Fill out this lil' form, and at some mystery time in the future, you'll get <b>your own</b> happy message! Like magic. <b>With happy sprinkles.</b> (p.s. you are really good at self care. High five.)</p>
 		    </div>
+
+		    {% else %}
+
+		  	<div class="col-md-8">
+		  		<br>
+			  	<h1>Send {{ view.recipient.name|capfirst }} some happy!</h1>
+			    <p>Fill out this lil' form, and at some mystery time in the future, {{ view.recipient.name|capfirst }} will get your happy message! Like magic. <b>With happy sprinkles.</b> Go you.</p>
+		    </div>
+
+		    {% endif %}
 	    </div>
 
 	  </div>

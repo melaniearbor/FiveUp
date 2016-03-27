@@ -23,11 +23,9 @@ class Message(models.Model):
 			str(self.created_date)
 		])
 
-#This *may* be used to list the messages in detail. 
 	def get_absolute_url(self):
 		''' returns a reference for the message'''
-		# TODO Create message detail view
-		return reverse('add-message-success') #, kwargs={'pk': self.id} ?
+		return reverse('add-message-success') 
 
 
 
