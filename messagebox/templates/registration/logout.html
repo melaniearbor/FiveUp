@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
+{% load fiveup_template_tags %}
 
 {% block content %}
 
 <div class="jumbotron" align="center">
-	<br>
-	<br>
-	<h1>Goodbye, you titan, you.</h1> 
-  	<h2> Have an unbelievably snazzy day!</h2>
+	<div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-lg-6 col-lg-offset-3">
+		<br>
+		<br>
+		<h1>Goodbye, you {% pet_name %}.</h1> 
+	  	<h2> Have {% adjective %} day!</h2>
+	</div>
 </div>
 	
 

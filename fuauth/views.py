@@ -3,6 +3,7 @@ from django.contrib.auth import views
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpRequest
+import random
 
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load widget_tweaks %}
+{% load fiveup_template_tags %}
 
 {% block js %}
 
@@ -11,7 +12,7 @@
 {% if user.is_authenticated %}
 <div class="jumbotron" align="center">
 	<br><br>
-	<h1>Hi {{ user.name|capfirst }}. <small>You're amazing.</small>
+	<h1>Hi {{ user.name|capfirst }}. <small>You're {% compliment %}.</small>
 </div>
 
 <div class="container">
