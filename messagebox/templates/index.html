@@ -14,14 +14,43 @@
         <br>
         <br>
         <br>
+        <br>
 {% if user.is_authenticated %}
 
 {% else %}
-        <h2>Let's sign up!</h2>
-        <p>It'll be awesome.</p>
-  <!-- <div class="jumbotron"> -->
+        <div class="row">
+            <div class="col-md-12">
+                <h1>How it works</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <img src='{% static "img/sadface.png" %}' width="50%">
+                <p><b>Sometimes life has sad things.</b> Like spiders, and splinters, and things that are sticky.<p>
+            </div>
+            <div class="col-md-4">
+                <img src='{% static "img/pitchmessage.png" %}' width="50%">
+                <p><b>We have happy messages</b> that are awesome, and not sad at all.<p>
+            </div>
+            <div class="col-md-4">
+                <img src='{% static "img/sendmessage.png" %}' width="100%">
+                <p><b>We use magic and technology</b> to send you happy messages on your phone.<p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 margin-top-30">
+                <h2>Then you're not so sad anymore. Hooray!</h2>
+                <img src='{% static "img/happyface.png" %}' width="50%">
+            </div>
+
 
         <a name='signup'></a>
+        <div class="row">
+           <div class="col-md-offset-3 col-md-6 margin-top-30">
+                <h1>Let's sign up<br>
+                <small>It'll be awesome.</small><h1>
+            </div>
+        </div>
         <div class="form-group">
             <form data-parsley-validate method="post" action="/register/">
 
