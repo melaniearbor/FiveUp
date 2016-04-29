@@ -41,10 +41,21 @@ def check_for_unsent_user_messages(user):
     else:
         return True
 
+# old method of picking custom or default messages. New method gives preference to default
+# messages so the custom ones don't run out so quickly. 
+# def which_messages():
+#     message_options = ['messagebox', 'messagevault']
+#     picker = random.randint(0,1)
+#     return message_options[picker]
+
 def which_messages():
     message_options = ['messagebox', 'messagevault']
-    picker = random.randint(0,1)
-    return message_options[picker]
+    picker = random.randint(0,10)
+    if picker < 8:
+        category = 'messagevault'
+    else:
+        category = 'messagebox'
+    return category
 
 def messagebox_pick(user):
     unsent_user_messages = Message.objects.filter(recipient=user, message_sent=False)
