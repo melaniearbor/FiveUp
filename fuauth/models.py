@@ -46,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     ATT = 'txt.att.net'
     VERIZON = 'vtext.com'
-    VIRGIN = 'vmobl.com'
+    VIRGIN = 'pixmbl.com'
     SPRINT = 'messaging.sprintpcs.com'
     TMOBILE = 'tmomail.net'
     CRICKET = 'sms.mycricket.com'
