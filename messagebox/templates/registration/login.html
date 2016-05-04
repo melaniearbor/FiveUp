@@ -75,7 +75,7 @@
 				<div class="col-md-2"><p><b>Phone Number</b></p></div>
 				<div class="col-md-4 "><p align="left">{{ user.phone_number }}</p></div>
 				<div class="col-md-2"><p><b>Mobile Carrier</b></p></div>
-				<div class="col-md-4"><p align="left">{{ user.carrier }}</p></div>
+				<div class="col-md-4"><p align="left">{{ user.get_carrier_display }}</p></div>
 			</div>
 			<div class="row">
 				<div class="col-md-2"><p><b>Do you want messages?</b></p></div>
