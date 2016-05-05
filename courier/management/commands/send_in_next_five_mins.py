@@ -19,7 +19,8 @@ def check_times():
     send_times = UserSendTime.objects.all()
     at_bat = []
     for i in send_times:
-        if timezone.localtime(i.scheduled_time) < timezone.localtime(now) and not i.sent and i.user.receiving_messages:
+        if timezone.localtime(i.scheduled_time) < timezone.localtime(now) and not i.sent 
+        and i.user.receiving_messages:
             at_bat.append(i)
     return at_bat
 
@@ -42,9 +43,12 @@ def check_for_unsent_user_messages(user):
         return True
 
 def which_messages():
-    message_options = ['messagebox', 'messagevault']
-    picker = random.randint(0,1)
-    return message_options[picker]
+    picker = random.randint(0,10)
+    if picker < 8:
+        category = 'messagevault'
+    else:
+        category = 'messagebox'
+    return category
 
 def messagebox_pick(user):
     unsent_user_messages = Message.objects.filter(recipient=user, message_sent=False)
