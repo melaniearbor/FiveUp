@@ -19,7 +19,7 @@ def check_times():
     send_times = UserSendTime.objects.all()
     at_bat = []
     for i in send_times:
-        if timezone.localtime(i.scheduled_time) < timezone.localtime(now) and not i.sent 
+        if timezone.localtime(i.scheduled_time) < timezone.localtime(now) and not i.sent \
         and i.user.receiving_messages:
             at_bat.append(i)
     return at_bat
@@ -60,7 +60,8 @@ def messagevault_pick():
     print('messagevault_pick')
     all_curated = CuratedMessage.objects.all()
     chosen_message = all_curated[random.randint(0,(len(all_curated))-1)]
-    send_message = chosen_message.message_text + ' -' + chosen_message.message_author_first + " " + chosen_message.message_author_last
+    send_message = chosen_message.message_text + ' -' + chosen_message.message_author_first + " " + \
+    chosen_message.message_author_last
     return send_message, chosen_message
 
 def pick_message(user):
