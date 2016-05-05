@@ -27,7 +27,7 @@ class CustomUserAdmin(admin.ModelAdmin):
 	list_editable = ('is_active', 'receive_newsletter', 'receiving_messages')
 	list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups',
 		'receive_newsletter', 'receiving_messages', 'carrier')
-	search_fields = ('email', 'name', 'phone_number', 'get_carrier_display')
+	search_fields = ('email', 'name', 'phone_number', 'carrier')
 	ordering = ('email', 'name')
 	# filter_horizontal = (,)
 
