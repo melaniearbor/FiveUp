@@ -1,8 +1,7 @@
 from django.contrib import admin
-# from django.contrib.auth.admin import UserAdmin #as AuthUserAdmin
 
 from fuauth.models import User
-from fuauth.forms import FUserCreationForm #FUserChangeForm
+from fuauth.forms import FUserCreationForm
 from messagebox.models import Message
 from messagevault.models import CuratedMessage
 from messagevault.views import CuratedMessageForm
@@ -29,7 +28,10 @@ class CustomUserAdmin(admin.ModelAdmin):
 		'receive_newsletter', 'receiving_messages', 'carrier')
 	search_fields = ('email', 'name', 'phone_number', 'carrier')
 	ordering = ('email', 'name')
-	# filter_horizontal = (,)
+	column = ('total_user_count',)
+
+	def total_user_count(self, obj):
+		return User.objects.count()
 
 class CuratedMessageAdmin(admin.ModelAdmin):
 
@@ -39,8 +41,28 @@ class CuratedMessageAdmin(admin.ModelAdmin):
     	('Banana Town', {'fields': ('message_text', 'message_author_first', 'message_author_last')}),
 	)
 
+class UserSendTimeAdmin(admin.ModelAdmin):
+
+	list_display = ('user_name', 'user', 'scheduled_time', 'sent')
+
+	search_fields = ('user__name', 'user__email', 'user__phone_number')
+
+	ordering = ('user', 'scheduled_time', 'sent')
+
+	list_filter = ('sent',)
+
+	date_hierarchy = 'scheduled_time'
+
+	def user_name(self, obj):
+	    return obj.user.name
+
+	def user_email(self, obj):
+	    return obj.user.email
+
+
+
 
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Message)
 admin.site.register(CuratedMessage, CuratedMessageAdmin)
-admin.site.register(UserSendTime)
+admin.site.register(UserSendTime, UserSendTimeAdmin)
