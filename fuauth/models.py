@@ -49,7 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     VIRGIN = 'pixmbl.com'
     SPRINT = 'messaging.sprintpcs.com'
     TMOBILE = 'tmomail.net'
-    CRICKET = 'sms.mycricket.com'
+    CRICKET = 'mms.cricketwireless.net'
     METROPCS = 'mymetropcs.com'
     PROJECTFI = 'msg.fi.google.com'
 
