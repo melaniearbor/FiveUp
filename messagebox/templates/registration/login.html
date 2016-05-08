@@ -81,11 +81,13 @@
 				<div class="col-md-2"><p><b>Do you want messages?</b></p></div>
 				<div class="col-md-4 ">
 					{% if user.receiving_messages %}
-						<font color="green">Yes! I love them with all my heart.<p>
+						<font color="green">Yes! I love them with all my heart.</font><p>
 					{% else %}
-						<font color="orange">Not right now.</p>
+						<font color="orange">Not right now.</font></p>
 					{% endif %}
 				</div>
+				<div class="col-md-2"><p><b>How many messages per day?</b></p></div>
+				<div class="col-md-4"><p align="left">{{ user.how_many_messages }}</p></div>
 			</div>
 			<div class="row">
 				<div class="col-md-4"><h2><a href="/password_change" class="btn btn-default" role="button"><small>Change password</small></a></h2></div>

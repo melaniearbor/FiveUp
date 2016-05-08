@@ -15,7 +15,7 @@ class FUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['name', 'email', 'phone_number', 'carrier', 'user_timezone', 'password', 
+        fields = ['name', 'email', 'phone_number', 'carrier', 'how_many_messages', 'user_timezone', 'password', 
         'is_staff', 'is_active', 'receive_newsletter']
 
 
@@ -34,25 +34,21 @@ class PublicUserCreation(CreateView, ModelFormMixin): #AjaxTemplateMixin
     template_name = 'index.html'
     form_class = FUserCreationForm
     success_url = '/signup-success/'
-    fields = ['name', 'email', 'phone_number', 'carrier', 'user_timezone', 'password']
+    fields = ['name', 'email', 'phone_number', 'carrier', 'how_many_messages', 'user_timezone', 'password']
     labels = {
         'name': _('what can we call you? Pete? Cindy?'),
         'email': _('what\'s your email address?'),
         'phone_number': _('phone number:'), 
         'carrier': _('your mobile carrier'),
+        'how_many_messages': _('how many fabulous messages do you want each day?'),
         'user_timezone': _('your time zone')
     }
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context["login_form"] = AuthenticationForm()
-    #     return context
 
 class FiveUUserChangeForm(UpdateView):
 
     template_name = 'profile_change.html'
     model = User
-    fields = ['phone_number', 'carrier', 'user_timezone', "receiving_messages"]
+    fields = ['phone_number', 'carrier', 'user_timezone', 'receiving_messages', 'how_many_messages']
     success_url = "/login/"
 
 

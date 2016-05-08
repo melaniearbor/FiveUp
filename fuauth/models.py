@@ -15,28 +15,27 @@ from uuidfield import UUIDField
 # Create your models here.
 
 class UserManager(BaseUserManager):
-  def _create_user(self, name, email, password, phone_number, carrier,
+  def _create_user(self, name, email, password, phone_number, carrier, how_many_messages,
    user_timezone, is_staff, is_superuser):
     now = timezone.now()
     if not email:
       raise ValueError(_('Hey there! We need your email address.'))
     email = self.normalize_email(email)
-    user = self.model(name=name, email=email, phone_number=phone_number, carrier=carrier, user_timezone=user_timezone, 
+    user = self.model(name=name, email=email, phone_number=phone_number, carrier=carrier, 
+      how_many_messages=how_many_messages,  user_timezone=user_timezone, 
       is_staff=is_staff, is_superuser=is_superuser, last_login=now, date_joined=now)
-    # user.uuid=uuid
     user.set_password(password)
     user.save(using=self._db)
-    print('Look I did this user manager thing!')
     return user
 
   def create_user(self, name, phone_number,
     carrier, user_timezone, email=None, password=None):
     return self._create_user(name, email, password, phone_number, 
-      carrier, user_timezone, False, False)
+      carrier, how_many_messages, user_timezone, False, False)
 
   def create_superuser(self, name, email, password, phone_number, 
     carrier, user_timezone):
-    user=self._create_user(name, email, password, phone_number, carrier,
+    user=self._create_user(name, email, password, phone_number, carrier, how_many_messages,
       user_timezone, True, True)
     user.is_active=True
     user.save(using=self._db)
@@ -73,6 +72,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     CENTRAL = 'CN'
     EASTERN = 'EA'
     ATLANTIC = 'AT'
+
     TIME_ZONE_CHOICES = (
         (HAWAII, 'Hawaii'),
         (ALASKA, 'Alaska'),
@@ -81,6 +81,20 @@ class User(AbstractBaseUser, PermissionsMixin):
         (CENTRAL, 'Central'),
         (EASTERN, 'Eastern'),
         (ATLANTIC, 'Atlantic')
+    )
+
+    ONE = '1'
+    TWO = '2'
+    THREE = '3'
+    FOUR = '4'
+    FIVE = '5'
+
+    HOW_MANY_MESSAGES_CHOICES = (
+        (ONE, '1'),
+        (TWO, '2'),
+        (THREE, '3'),
+        (FOUR, '4'),
+        (FIVE, '5')
     )
 
     name = models.CharField(
@@ -143,6 +157,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     receiving_messages = models.BooleanField(default=True)
 
+    how_many_messages = models.CharField(
+      max_length=1,
+      choices=HOW_MANY_MESSAGES_CHOICES,
+      default=5
+    )
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
@@ -156,10 +176,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def email_user(self, subject, message, from_email=None):
       send_mail(subject, message, from_email, [self.email])
-
-    # def get_absolute_url(self):
-    #   from django.core.urlresolvers import reverse
-    #   return (reverse('fuauth.views.success', args=[str(self.id)])
 
 
 

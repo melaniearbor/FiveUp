@@ -52,11 +52,19 @@ def create_schedule():
   return schedule 
 
 def record_user_send_times(group):
+  """
+  Creates send times specific to each active user who has chosen to receive messages. 
+  Will reduce the number of send times created in create_schedule based on the 
+  number of texts the user has chosen to receive.
+
+  """
   group_schedule = create_schedule()
+  shuffle(group_schedule)
   for user in group:
     if user.receiving_messages==True & user.is_active==True:
-      for time in group_schedule:
-        user_send_time = UserSendTime.objects.create(scheduled_time = time, user = user)
+        user_schedule = group_schedule[0:int(user.how_many_messages)]
+        for time in user_schedule:
+          user_send_time = UserSendTime.objects.create(scheduled_time = time, user = user)
 
 
 
