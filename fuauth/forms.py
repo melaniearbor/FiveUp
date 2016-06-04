@@ -15,7 +15,7 @@ class FUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['name', 'email', 'phone_number', 'carrier', 'how_many_messages', 'user_timezone', 'password', 
+        fields = ['name', 'email', 'phone_number', 'carrier', 'user_timezone', 'password', 
         'is_staff', 'is_active', 'receive_newsletter']
 
 
