@@ -81,20 +81,6 @@ def pick_message(user):
 
     return message_to_send
 
-def send_text(message, msg_to):
-
-
-    sg = sendgrid.SendGridClient('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')
-
-    message = sendgrid.Mail()
-    message.add_to('msg_to')
-    message.set_subject('')
-    message.set_html('')
-    message.set_text('message')
-    message.set_from('Five Up <app44043297@heroku.com>')
-    status, msg = sg.send(message)
-
-
 
 def send_each_at_bat():
     at_bat = check_times()

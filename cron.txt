@@ -1,6 +1,0 @@
-MAILTO="melanie_crutchfield@hotmail.com"
-# This cron job creates the daily schedule for FiveUp
-0 6 * * * /users/macbookpro/Envs/envfiveup/bin/python3 /users/macbookpro/Envs/envfiveup/fiveup/manage.py create_daily_schedule
-
-# This cron job creates the checks scheduled messages for FiveUp that should send in the next 5 mins
-*/5 * * * * /users/macbookpro/Envs/envfiveup/bin/python /users/macbookpro/Envs/envfiveup/fiveup/manage.py send_in_next_five_mins

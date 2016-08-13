@@ -42,7 +42,6 @@ group_a, group_b, group_c = divide_users(group_a, group_b, group_c)
 
 print(group_a, group_b, group_c)
 
-specialthing = 'crutchback'
 
 def create_schedule():
   """
@@ -149,30 +148,6 @@ def find_time_owner(time, all_schedules):
     return group
 
 
-def send_text(message, msg_to):
-  msg = email.message_from_string(str(message))
-  msg['From'] = "happy@fiveup.com"
-  msg['To'] = msg_to
-  msg['Subject'] = "" #can leave blank
-
-  s = smtplib.SMTP("smtp.live.com",587)
-  s.ehlo()
-  s.starttls() 
-  s.ehlo()
-  s.login('melanie_crutchfield@hotmail.com', specialthing) # TODO set up a user with a password that correlates
-  #to sending email account
-
-# s.sendmail(sender, recipient phone number, message) 6192032488@vmobl.com
-  s.sendmail("happy@fiveupapp.com", msg_to, msg.as_string())
-
-  s.quit()
-
-
-def pick_and_send(group):
-  for user in group:
-    message = pick_message(user)
-    msg_to = user.phone_number + user.carrier  # TODO need to change carrier to give the email server data
-    send_text(message, msg_to)
 
 
 
