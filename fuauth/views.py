@@ -13,15 +13,6 @@ from fuauth.models import User
 
 # Create your views here.
 
-def success(request):
-    # context = {'user_uuid': user_uuid}
-    template_name = 'registration/login.html'
-    return render(request, template_name)
-
-def testsign(request):
-	template_name = 'sign_up.html'
-	return render(request, template_name)
-
 def register(request):
     context = RequestContext(request) #where is RequestContext defined
 
@@ -59,10 +50,6 @@ def register(request):
             'registration/login.html',
             {'user_form': user_form, 'registered': registered},
             context)
-
-def loginform(request):
-    template_name = 'loginform.html'
-    return render(request, template_name)
 
 def login_user(request):
     logout(request)

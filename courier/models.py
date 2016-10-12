@@ -18,7 +18,3 @@ class UserSendTime(models.Model):
             str(self.user),
             str(self.scheduled_time)
         ])
-
-
-
-# obj1 = UserSendTime.objects.create(scheduled_time=datetime.datetime(100, 1, 1, 6,14,00), user = melanie)

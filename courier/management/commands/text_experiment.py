@@ -15,7 +15,7 @@ def send_test_text(now_phone, now_carrier):
     mail = EmailMultiAlternatives(
       subject="FiveUp",
       body=message2,
-      from_email="Five Up <app44043297@heroku.com>",
+      from_email="hellomelaniec@gmail.com",
       to=[msg_to],
     )
     mail.send()
