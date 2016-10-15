@@ -104,14 +104,6 @@ STATICFILES_DIRS = (
         BASE_DIR,
         'static',
     ),
-    os.path.join(
-        BASE_DIR,
-        'messagebox/static',
-    ),
-    os.path.join(
-        BASE_DIR,
-        'fuauth/static',
-    ),
 )
 
 TEMPLATE_DIRS = (
