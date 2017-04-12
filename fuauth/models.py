@@ -43,8 +43,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    ATT = 'txt.att.net'
-    VERIZON = 'vtext.com'
+    ATT = 'mms.att.net'
+    VERIZON = 'vzwpix.com'
     VIRGIN = 'pixmbl.com'
     SPRINT = 'messaging.sprintpcs.com'
     TMOBILE = 'tmomail.net'
