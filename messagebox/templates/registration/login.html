@@ -28,9 +28,14 @@
 
     <div class="row">
     	<div class="col-md-12">
-	    	<h3>Or get social!</h3>
-	        <p>Click these fancy icons to share your link with your internet friendsies. They'll fill out a form (no sign up or anything), and you'll get a surprise message from them in the future. They'll feel like they're being awesome friends, and you'll feel like a kitten fountain is bubbling up in your heart. Win win.</p>
-	    	<div class="col-xs-2">
+    		<h2>Even more happy?! <small>Let's do that too.</small></h2>
+	    	<h3>The link below is a magical porthole that allows your friends to send you messages. </h3>
+	    	<p>The power and wonder of this activity cannot be underestimated.</p>
+	    	<div class="well"> 
+	    		<p><a href="{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}">{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}</a></p>
+    		</div>
+	        <p><b>Copy/paste to share your link with your internet friendsies. </b>They'll fill out a form (no sign up or anything), and you'll get a surprise message from them in the future. They'll feel like they're being awesome friends, and you'll feel like a kitten fountain is bubbling up in your heart. Win win.</p>
+<!-- 	    	<div class="col-xs-2">
 		        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.META.HTTP_HOST }}/new/{{ user.uuid }}"
 			    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
 			    <img class="img-responsive" src='{% static "img/facebook.png" %}'></a> 
@@ -47,7 +52,7 @@
 			<div class="col-xs-2">
 	    		<a href="mailto:?subject=Send%20me%20some%20happy!&body=Hi!%0A%0AI'm%20using%20FiveUp,%20the%20happy%20little%20project%20that%20sends%20five%20happy%20texts%20every%20day.%20I%20get%20awesome%20texts%20from%20the%20folks%20at%20FiveUp,%20but%20wait!%20There's%20more!%20My%20friends%20and%20family%20can%20add%20messages%20that%20I'll%20get%20at%20some%20unannounced%20time%20in%20the%20future%20too!%20So,%20if%20you're%20so%20inclined,%20click%20the%20link%20below%20and%20send%20me%20your%20fuzzy%20snuggles%20and%20sparkly%20rainbows.%0A%0AHuzzah!%0A%0Ahttp%3A%2F%2F{% filter urlencode %}{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}{% endfilter %}">
 			    <img class="img-responsive" src='{% static "img/email.png" %}'></a>
-		    </div>
+		    </div> -->
 	    </div>
     </div>
         	<hr>
