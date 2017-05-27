@@ -116,6 +116,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
    # TODO - Figure out default prompt value
     carrier = models.CharField(
+      _('carrier'), 
       max_length=100,
       choices=CARRIER_CHOICES,
       default=VIRGIN
