@@ -17,3 +17,4 @@ smtpapi==0.2.0
 static3==0.6.1
 django-email-log==0.2.0
 
+django-sslify>=0.2.0
