@@ -6,7 +6,7 @@ from django.core import validators
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.utils.http import urlquote
-from django.utils.translation import ugettext_lazy as _ 
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django import forms
 
@@ -21,8 +21,8 @@ class UserManager(BaseUserManager):
     if not email:
       raise ValueError(_('Hey there! We need your email address.'))
     email = self.normalize_email(email)
-    user = self.model(name=name, email=email, phone_number=phone_number, carrier=carrier, 
-      how_many_messages=how_many_messages,  user_timezone=user_timezone, 
+    user = self.model(name=name, email=email, phone_number=phone_number, carrier=carrier,
+      how_many_messages=how_many_messages,  user_timezone=user_timezone,
       is_staff=is_staff, is_superuser=is_superuser, last_login=now, date_joined=now)
     user.set_password(password)
     user.save(using=self._db)
@@ -30,10 +30,10 @@ class UserManager(BaseUserManager):
 
   def create_user(self, name, phone_number,
     carrier, user_timezone, email=None, password=None):
-    return self._create_user(name, email, password, phone_number, 
+    return self._create_user(name, email, password, phone_number,
       carrier, how_many_messages, user_timezone, False, False)
 
-  def create_superuser(self, name, email, password, phone_number, 
+  def create_superuser(self, name, email, password, phone_number,
     carrier, user_timezone):
     user=self._create_user(name, email, password, phone_number, carrier, how_many_messages,
       user_timezone, True, True)
@@ -44,7 +44,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
 
     ATT = 'mms.att.net'
-    VERIZON = 'vzwpix.com'
+    VERIZON = 'vtext.com'
     VIRGIN = 'pixmbl.com'
     SPRINT = 'messaging.sprintpcs.com'
     TMOBILE = 'tmomail.net'
@@ -111,12 +111,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     phone_number = models.CharField(
-      _('your phone number'), 
+      _('your phone number'),
       max_length=10)
 
    # TODO - Figure out default prompt value
     carrier = models.CharField(
-      _('carrier'), 
+      _('carrier'),
       max_length=100,
       choices=CARRIER_CHOICES,
       default=VIRGIN
@@ -130,7 +130,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     is_staff = models.BooleanField(
       _('staff status'),
-      default = False, 
+      default = False,
       help_text =_('Designates whether the user can log into this admin\
         site'),
     )
@@ -143,16 +143,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     date_joined = models.DateTimeField(
-      _('date joined'), 
+      _('date joined'),
       default=timezone.now
     )
 
     receive_newsletter = models.BooleanField(default=False)
 
     uuid = UUIDField(
-      blank=True, 
-      null=True, 
-      max_length=32, 
+      blank=True,
+      null=True,
+      max_length=32,
       auto=True
     )
 
