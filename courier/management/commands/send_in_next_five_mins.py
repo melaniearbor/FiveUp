@@ -28,12 +28,12 @@ def check_for_unsent_user_messages(user):
     """
     Checks if a user has unsent message in messagebox
 
-        Args: 
+        Args:
         user: a user from fuauth
 
         Returns:
-        False if user has no messages 
-        True if user has messages 
+        False if user has no messages
+        True if user has messages
     """
 
     recipient = user
@@ -43,8 +43,8 @@ def check_for_unsent_user_messages(user):
         return True
 
 def which_messages():
-    picker = random.randint(0,10)
-    if picker < 8:
+    picker = random.randint(0,20)
+    if picker < 17:
         category = 'messagevault'
     else:
         category = 'messagebox'
