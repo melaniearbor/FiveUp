@@ -34,21 +34,24 @@ class PublicUserCreation(CreateView, ModelFormMixin): #AjaxTemplateMixin
     template_name = 'index.html'
     form_class = FUserCreationForm
     success_url = '/signup-success/'
-    fields = ['name', 'email', 'phone_number', 'carrier', 'how_many_messages', 'user_timezone', 'password']
+    fields = ['name', 'email', 'phone_number', 'carrier', 'how_many_messages', 
+              'user_timezone', 'interval_type', 'password']
     labels = {
         'name': _('what can we call you? Pete? Cindy?'),
         'email': _('what\'s your email address?'),
         'phone_number': _('phone number:'), 
         'carrier': _('your mobile carrier'),
-        'how_many_messages': _('how many fabulous messages do you want each day?'),
-        'user_timezone': _('your time zone')
+        'how_many_messages': _('how many fabulous messages do you want each scheduling interval?'),
+        'user_timezone': _('your time zone'),
+        'interval_type': _('scheduling interval for selected number of messages')
     }
 
 class FiveUUserChangeForm(UpdateView):
 
     template_name = 'profile_change.html'
     model = User
-    fields = ['phone_number', 'carrier', 'user_timezone', 'receiving_messages', 'how_many_messages']
+    fields = ['phone_number', 'carrier', 'user_timezone', 'receiving_messages', 
+              'how_many_messages', 'interval_type']
     success_url = "/login/"
 
 

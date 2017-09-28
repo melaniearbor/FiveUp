@@ -16,13 +16,14 @@ from uuidfield import UUIDField
 
 class UserManager(BaseUserManager):
   def _create_user(self, name, email, password, phone_number, carrier, how_many_messages,
-   user_timezone, is_staff, is_superuser):
+   user_timezone, interval_type, is_staff, is_superuser):
     now = timezone.now()
     if not email:
       raise ValueError(_('Hey there! We need your email address.'))
     email = self.normalize_email(email)
     user = self.model(name=name, email=email, phone_number=phone_number, carrier=carrier,
       how_many_messages=how_many_messages,  user_timezone=user_timezone,
+      interval_type=interval_type,
       is_staff=is_staff, is_superuser=is_superuser, last_login=now, date_joined=now)
     user.set_password(password)
     user.save(using=self._db)
@@ -31,12 +32,12 @@ class UserManager(BaseUserManager):
   def create_user(self, name, phone_number,
     carrier, user_timezone, email=None, password=None):
     return self._create_user(name, email, password, phone_number,
-      carrier, how_many_messages, user_timezone, False, False)
+      carrier, how_many_messages, user_timezone, interval_type, False, False)
 
   def create_superuser(self, name, email, password, phone_number,
     carrier, user_timezone):
     user=self._create_user(name, email, password, phone_number, carrier, how_many_messages,
-      user_timezone, True, True)
+      user_timezone, interval_type, True, True)
     user.is_active=True
     user.save(using=self._db)
     return user
@@ -97,6 +98,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         (THREE, '3'),
         (FOUR, '4'),
         (FIVE, '5')
+    )
+
+    PER_DAY = 'Day'
+    PER_WEEK = 'Week'
+    PER_MONTH = 'Month'
+
+    INTERVAL_TYPE_CHOICES = (
+        (PER_DAY, 'Day'),
+        (PER_WEEK, 'Week'),
+        (PER_MONTH, 'Month')
     )
 
     name = models.CharField(
@@ -164,6 +175,12 @@ class User(AbstractBaseUser, PermissionsMixin):
       max_length=1,
       choices=HOW_MANY_MESSAGES_CHOICES,
       default=5
+    )
+
+    interval_type = models.CharField(
+      max_length=6,
+      choices=INTERVAL_TYPE_CHOICES,
+      default=PER_DAY
     )
 
     objects = UserManager()

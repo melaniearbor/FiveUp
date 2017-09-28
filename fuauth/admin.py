@@ -17,12 +17,13 @@ class CustomUserAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password', 'receive_newsletter')}),
         ('Personal info', {'fields': ('name', 'phone_number', 'carrier', 'user_timezone')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'receiving_messages', 'how_many_messages')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',
+            'receiving_messages', 'how_many_messages', 'interval_type')}),
         ('Auto info', {'fields': ('date_joined', 'uuid')}),
     )
 
-    list_display = ('email', 'name', 'phone_number', 'receiving_messages', 'how_many_messages', 
-        'date_joined', 'carrier')
+    list_display = ('email', 'name', 'phone_number', 'receiving_messages',
+        'how_many_messages', 'interval_type', 'date_joined', 'carrier')
     list_editable = ('receiving_messages',)
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups',
         'receive_newsletter', 'receiving_messages', 'carrier')
