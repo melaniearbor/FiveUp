@@ -29,6 +29,26 @@ DEFAULT_END_TIME = datetime.time(hour=19, tzinfo = DEFAULT_TIMEZONE)
 def get_user_datetimes(year, month, days_in_month, start_day, msg_count, 
                        start_time, end_time, timezone):
     '''
+    Derive times to schedule user for the current/following month,
+    randomly generated in the specified periods
+    
+    - year : int
+    - month : int
+    - days_in_month : int
+    - start_day : int
+        day of month to start (may be greater than 1)
+    - msg_count : int
+        Number of messages to schedule
+    - start_time : datetime.time
+        Earliest time of day to schedule
+    - end_time : datetime.time
+        Latest time of day to schedule
+    - timezone : django.util.timezone
+        Timezone to determine offset  
+        
+    return : list of datetimes                  
+     
+    
     the result days should be somewhat spread throughout the month
     no duplicate days per random.sample
     '''    
@@ -54,6 +74,8 @@ def month_to_schedule(now):
     if the current date has day >= 10 or the current month if day < 10,
     otherwise it won't schedule times.
     
+    - now : datetime
+    
     returns year, month, count of days in month, day to start scheduling (all ints)
     '''
     
@@ -76,6 +98,10 @@ def month_to_schedule(now):
             
             
 def schedule_users():
+    '''
+    Add scheduled messages to UserSendTime for each active user receiving 
+    FiveUp messages on the monthly plan.
+    '''
     users = User.objects.filter(interval_type=User.PER_MONTH,
             receiving_messages=True, is_active=True)  
              
@@ -90,8 +116,9 @@ def schedule_users():
         for t in times:
             UserSendTime.objects.create(scheduled_time = t, user = user)
     ''' 
-    # when the User class has fields to indicate individual start and end times
-    # use the following instead. Will need to validate user times and convert timezone 
+    When the User class has fields to indicate individual start and end times
+    use the following instead. Will need to validate user times and convert timezone 
+    
     for user in users:
         times = get_user_datetimes(days_in_month, int(user.how_many_messages), 
                 user.start_time, user.end_time, CONVERT_ME(user.timezone))       

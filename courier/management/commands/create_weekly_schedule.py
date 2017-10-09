@@ -27,7 +27,23 @@ DEFAULT_END_TIME = datetime.time(hour=19, tzinfo = DEFAULT_TIMEZONE)
             
 def get_user_datetimes(start_date, msg_count, start_time, end_time, timezone):
     '''
-    the result days should be somewhat spread throughout the week
+    Derive times to schedule user for the current/following week,
+    randomly generated in the specified periods
+    
+    - start_date : datetime
+        Date of start of week to schedule
+    - msg_count : int
+        Number of messages to schedule
+    - start_time : datetime.time
+        Earliest time of day to schedule
+    - end_time : datetime.time
+        Latest time of day to schedule
+    - timezone : django.util.timezone
+        Timezone to determine offset  
+        
+    return : list of datetimes                  
+    
+    The result days should be somewhat spread throughout the week
     no duplicate days per random.sample
     ''' 
     
@@ -56,6 +72,10 @@ def get_user_datetimes(start_date, msg_count, start_time, end_time, timezone):
     
                 
 def schedule_users():
+    '''
+    Add scheduled messages to UserSendTime for each active user receiving 
+    FiveUp messages on the weekly plan.
+    '''
     users = User.objects.filter(interval_type=User.PER_WEEK,
             receiving_messages=True, is_active=True)  
              
@@ -71,8 +91,10 @@ def schedule_users():
         for t in times:
             UserSendTime.objects.create(scheduled_time = t, user = user)
     ''' 
-    # when the User class has fields to indicate individual start and end times
-    # use the following instead. Will need to validate user times and convert timezone 
+    When the User class has fields to indicate individual start and end times
+    use the following instead. 
+    Will need to validate user times and convert timezone
+     
     for user in users:
         times = get_user_datetimes(start_date, int(user.how_many_messages), 
                 user.start_time, user.end_time, CONVERT_ME(user.timezone))       
