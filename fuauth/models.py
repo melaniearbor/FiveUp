@@ -15,15 +15,14 @@ from uuidfield import UUIDField
 # Create your models here.
 
 class UserManager(BaseUserManager):
-  def _create_user(self, name, email, password, phone_number, carrier, how_many_messages,
+  def _create_user(self, name, email, password, phone_number, carrier,
    user_timezone, is_staff, is_superuser):
     now = timezone.now()
     if not email:
       raise ValueError(_('Hey there! We need your email address.'))
     email = self.normalize_email(email)
     user = self.model(name=name, email=email, phone_number=phone_number, carrier=carrier,
-      how_many_messages=how_many_messages,  user_timezone=user_timezone,
-      is_staff=is_staff, is_superuser=is_superuser, last_login=now, date_joined=now)
+      user_timezone=user_timezone, is_staff=is_staff, is_superuser=is_superuser, last_login=now, date_joined=now)
     user.set_password(password)
     user.save(using=self._db)
     return user
@@ -31,11 +30,11 @@ class UserManager(BaseUserManager):
   def create_user(self, name, phone_number,
     carrier, user_timezone, email=None, password=None):
     return self._create_user(name, email, password, phone_number,
-      carrier, how_many_messages, user_timezone, False, False)
+      carrier, user_timezone, False, False)
 
   def create_superuser(self, name, email, password, phone_number,
     carrier, user_timezone):
-    user=self._create_user(name, email, password, phone_number, carrier, how_many_messages,
+    user=self._create_user(name, email, password, phone_number, carrier,
       user_timezone, True, True)
     user.is_active=True
     user.save(using=self._db)
@@ -139,7 +138,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     is_active = models.BooleanField(
       _('active'),
-      default = False,
+      default = True,
       help_text = _('Designates whether the user should be treated as active.\
         Unselect this instead of deleting accounts.')
     )

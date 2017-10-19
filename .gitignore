@@ -5,3 +5,4 @@ db.sqlite3
 __pycache__/
 staticfiles
 git-credential-osxkeychain
+geckodriver.log
