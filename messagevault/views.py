@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from django.utils.translation import ugettext as _
 
-# Create your views here.
+
 class CuratedMessageForm(ModelForm):
 
     model = CuratedMessage

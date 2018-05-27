@@ -21,17 +21,18 @@ class CustomUserAdmin(admin.ModelAdmin):
         ('Auto info', {'fields': ('date_joined', 'uuid')}),
     )
 
-    list_display = ('email', 'name', 'phone_number', 'receiving_messages', 'how_many_messages', 
-        'date_joined', 'carrier')
+    list_display = ('email', 'name', 'phone_number', 'receiving_messages', 'how_many_messages',
+                    'date_joined', 'carrier')
     list_editable = ('receiving_messages',)
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups',
-        'receive_newsletter', 'receiving_messages', 'carrier')
+                   'receive_newsletter', 'receiving_messages', 'carrier')
     search_fields = ('email', 'name', 'phone_number', 'carrier')
     ordering = ('email', 'name')
     column = ('total_user_count',)
 
     def total_user_count(self, obj):
         return User.objects.count()
+
 
 class CuratedMessageAdmin(admin.ModelAdmin):
 
@@ -42,6 +43,7 @@ class CuratedMessageAdmin(admin.ModelAdmin):
     )
 
     search_fields = ('message_author_last',)
+
 
 class UserSendTimeAdmin(admin.ModelAdmin):
 
@@ -60,8 +62,6 @@ class UserSendTimeAdmin(admin.ModelAdmin):
 
     def user_email(self, obj):
         return obj.user.email
-
-
 
 
 admin.site.register(User, CustomUserAdmin)

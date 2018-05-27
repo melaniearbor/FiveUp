@@ -3,10 +3,11 @@ from django.contrib.admin.models import LogEntry
 
 
 def clear_old_admin_logs():
-	logs = LogEntry.objects.all()
+    logs = LogEntry.objects.all()
 
-	for i in range(2000,len(logs)):
-		logs[i].delete()
+    for i in range(2000, len(logs)):
+        logs[i].delete()
+
 
 class Command(BaseCommand):
     def handle(self, *args, **options):

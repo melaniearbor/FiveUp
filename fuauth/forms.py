@@ -1,23 +1,16 @@
-from django.contrib.auth.forms import UserCreationForm as AuthUserCreationForm, UserChangeForm as AuthUserChangeForm
 from django import forms
-from django.utils.translation import ugettext_lazy as _ 
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic.edit import CreateView, ModelFormMixin, UpdateView
-from django.http import HttpResponseRedirect
-from django.contrib.auth.forms import AuthenticationForm
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
 
 from fuauth.models import User
-from courier.models import UserSendTime
 
 
 class FUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['name', 'email', 'phone_number', 'carrier', 'user_timezone', 'password', 
-        'is_staff', 'is_active', 'receive_newsletter']
-
+        fields = ['name', 'email', 'phone_number', 'carrier', 'user_timezone', 'password',
+                  'is_staff', 'is_active', 'receive_newsletter']
 
     def save(self, commit=True):
         user = super(FUserCreationForm, self).save(commit=False)
@@ -28,7 +21,8 @@ class FUserCreationForm(forms.ModelForm):
             user.save()
         return user
 
-class PublicUserCreation(CreateView, ModelFormMixin): #AjaxTemplateMixin
+
+class PublicUserCreation(CreateView, ModelFormMixin):
 
     model = User
     template_name = 'index.html'
@@ -38,11 +32,12 @@ class PublicUserCreation(CreateView, ModelFormMixin): #AjaxTemplateMixin
     labels = {
         'name': _('what can we call you? Pete? Cindy?'),
         'email': _('what\'s your email address?'),
-        'phone_number': _('phone number:'), 
+        'phone_number': _('phone number:'),
         'carrier': _('your mobile carrier'),
         'how_many_messages': _('how many fabulous messages do you want each day?'),
         'user_timezone': _('your time zone')
     }
+
 
 class FiveUUserChangeForm(UpdateView):
 
@@ -51,11 +46,5 @@ class FiveUUserChangeForm(UpdateView):
     fields = ['phone_number', 'carrier', 'user_timezone', 'receiving_messages', 'how_many_messages']
     success_url = "/login/"
 
-
     def get_object(self):
         return User.objects.get(uuid=self.kwargs.get("uuid"))
-
-
-
-
-

@@ -1,7 +1,7 @@
 import os
 from django.conf import settings
-from django.shortcuts import render, render_to_response, redirect
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
+
 
 def display_cert(request):
     file_path = os.path.join(settings.STATIC_ROOT, 'BA7CD11C05866445FBFE053E2C1AAA8C.txt')

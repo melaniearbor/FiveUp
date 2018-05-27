@@ -2,10 +2,9 @@ from django.db import models
 from django.utils import timezone
 from fuauth.models import User
 
-# Create your models here.
 
 class UserSendTime(models.Model):
-    scheduled_time =  models.DateTimeField(default=timezone.now)
+    scheduled_time = models.DateTimeField(default=timezone.now)
 
     user = models.ForeignKey(User)
 

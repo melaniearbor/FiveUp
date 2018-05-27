@@ -13,6 +13,7 @@ import os
 import os.path
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+
 def get_env_variable(var_name):
     """ Get the environment variable or return exception """
     try:
@@ -132,7 +133,7 @@ WSGI_APPLICATION = 'fiveup.wsgi.application'
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3"))
+DATABASES['default'] = dj_database_url.config(default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3"))
 
 print(DATABASES['default'])
 
@@ -141,4 +142,3 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
-

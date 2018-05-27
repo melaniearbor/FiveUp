@@ -1,15 +1,12 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, ModelFormMixin
-from django.utils.translation import ugettext_lazy as _ 
+from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
 
 from fuauth.models import User
 from fuauth.forms import PublicUserCreation
 from messagebox.models import Message
-
-# Create your views here.
-
 
 
 class CreateMessageView(CreateView, ModelFormMixin):
@@ -27,13 +24,12 @@ class CreateMessageView(CreateView, ModelFormMixin):
         recipient = User.objects.get(uuid=recipient_uuid)
         return recipient
 
-
     def form_valid(self, form):
         """
         If the form is valid, save the associated model.
         """
         def get_user():
-            user_uuid=self.kwargs['uuid']
+            user_uuid = self.kwargs['uuid']
             user = User.objects.get(uuid=user_uuid)
             return user
         new_message = form.save(commit=False)
@@ -50,11 +46,10 @@ def success(request):
 
 
 def index(request):
-    # form = CustomUserCreation()
     context = {'form': form}
     template_name = 'index.html'
-    print('look here I am!')
     return render(request, template_name)
+
 
 def contact(request):
     template_name = 'contact.html'
