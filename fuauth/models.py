@@ -112,7 +112,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         _('your phone number'),
         max_length=10)
 
-   # TODO - Figure out default prompt value
+    # TODO - Figure out default prompt value
     carrier = models.CharField(
         _('carrier'),
         max_length=100,
