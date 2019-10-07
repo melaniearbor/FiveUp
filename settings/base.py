@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'courier',
     'email_log',
     'django_extensions',
+    'shell_plus',
 )
 
 MIDDLEWARE_CLASSES = (
