@@ -1,12 +1,12 @@
-from django.core.management.base import BaseCommand
-from django.utils.timezone import make_aware
-from django.utils.timezone import get_current_timezone
-import random
-from random import shuffle
 import datetime
-from datetime import date
 import math
+import random
+from datetime import date
+from random import shuffle
+
 from courier.models import UserSendTime
+from django.core.management.base import BaseCommand
+from django.utils.timezone import get_current_timezone, make_aware
 from fuauth.models import User
 
 all_users = User.objects.all()

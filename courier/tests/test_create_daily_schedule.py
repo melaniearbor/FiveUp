@@ -1,6 +1,8 @@
 import datetime
 
 from courier.management.commands import create_daily_schedule
+from courier.models import UserSendTime
+from django.core import management
 from django.test import TestCase
 from fuauth.models import User
 
@@ -73,10 +75,47 @@ class TestDailySchedule(TestCase):
         schedule = create_daily_schedule.create_schedule()
         send_times = [send_time for send_time in schedule]
         spreads = []
-        import pdb; pdb.set_trace()
         for time in send_times:
             if send_times.index(time) != 4:
                 spread = send_times[send_times.index(time) + 1] - time
             spreads.append(spread.seconds)
         assert max(spreads) < 9361
         assert min(spreads) > 2399
+
+    def test_active_user_send_times(self):
+        """
+        An active user with default number of messages should
+        get 5 send times scheduled.
+        """
+
+        fel = User.objects.get(name="Felicita")
+        ang = User.objects.get(name="Angela")
+        rob = User.objects.get(name="Robert")
+        group = [fel, ang, rob]
+        create_daily_schedule.record_user_send_times(group)
+        assert UserSendTime.objects.filter(user=fel).count() == 5
+
+    def test_user_wants_n_messages(self):
+        """
+        If a user only wants n messages they should only have
+        n messages scheduled.
+        """
+
+        fel = User.objects.get(name="Felicita")
+        ang = User.objects.get(name="Angela")
+        rob = User.objects.get(name="Robert")
+        group = [fel, ang, rob]
+        for n in range(1, 6):
+            fel.how_many_messages = n
+            fel.save()
+            create_daily_schedule.record_user_send_times(group)
+            assert UserSendTime.objects.filter(user=fel).count() == n
+            UserSendTime.objects.filter(user=fel).delete()
+
+    def test_create_daily_schedule_management_commands(self):
+        """
+        Running the create_daily_schedule management command
+        should result in 5 send times per user.
+        """
+        management.call_command("create_daily_schedule")
+        assert UserSendTime.objects.all().count() == 50
