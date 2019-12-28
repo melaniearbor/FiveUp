@@ -1,0 +1,2 @@
+[run]
+omit = courier/management/commands/text_experiment.py, cov_html

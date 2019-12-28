@@ -7,3 +7,4 @@ staticfiles
 git-credential-osxkeychain
 geckodriver.log
 .coverage
+cov_html/

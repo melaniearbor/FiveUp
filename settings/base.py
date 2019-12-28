@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 import os.path
 
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -34,55 +36,53 @@ SECRET_KEY = get_env_variable("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'fuauth',
-    'messagebox',
-    'messagevault',
-    'widget_tweaks',
-    'django_modalview',
-    'parsley',
-    'courier',
-    'email_log',
-    'django_extensions',
-    'shell_plus',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "fuauth",
+    "messagebox",
+    "messagevault",
+    "widget_tweaks",
+    "django_modalview",
+    "parsley",
+    "courier",
+    "email_log",
+    "django_extensions",
+    "shell_plus",
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.auth.middleware.SessionAuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 )
 
-ROOT_URLCONF = 'fiveup.urls'
+ROOT_URLCONF = "fiveup.urls"
 
-WSGI_APPLICATION = 'fiveup.wsgi.application'
+WSGI_APPLICATION = "fiveup.wsgi.application"
 
 
 # overridden by dj-database-url
-DATABASES = {
-
-}
+DATABASES = {}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = "America/Los_Angeles"
 
 USE_I18N = True
 
@@ -90,37 +90,28 @@ USE_L10N = True
 
 USE_TZ = True
 
-AUTH_USER_MODEL = 'fuauth.User'
+AUTH_USER_MODEL = "fuauth.User"
 
-LOGIN_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = "/login/"
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = "staticfiles"
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 STATICFILES_DIRS = (
-    #Put strings here, like "/home/html/static"
-    #Always use forward slashes
-    #Don't forget to use absolutel paths, not relative paths.
-    os.path.join(
-        BASE_DIR,
-        'static',
-    ),
+    # Put strings here, like "/home/html/static"
+    # Always use forward slashes
+    # Don't forget to use absolutel paths, not relative paths.
+    os.path.join(BASE_DIR, "static"),
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(
-        BASE_DIR,
-        'messagebox/templates',
-    ),
-    os.path.join(
-        BASE_DIR,
-        'fuauth/templates',
-    ),
+    os.path.join(BASE_DIR, "messagebox/templates"),
+    os.path.join(BASE_DIR, "fuauth/templates"),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -128,22 +119,23 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
 )
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'email_log.backends.EmailBackend'
+
+EMAIL_BACKEND = "email_log.backends.EmailBackend"
 EMAIL_LOG_BACKEND = "sgbackend.SendGridBackend"
 SENDGRID_API_KEY = get_env_variable("SENDGRID_API_KEY")
 DEFAULT_FROM_EMAIL = "Five Up <app44043297@heroku.com>"
 
-WSGI_APPLICATION = 'fiveup.wsgi.application'
+WSGI_APPLICATION = "fiveup.wsgi.application"
 
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] = dj_database_url.config(default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3"))
 
-print(DATABASES['default'])
+DATABASES["default"] = dj_database_url.config(
+    default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3")
+)
+
+print(DATABASES["default"])
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
