@@ -2,7 +2,7 @@ from fuauth.models import User
 from utils import SeleniumTestCase
 
 
-class LoginTest(SeleniumTestCase):
+class LogoutTest(SeleniumTestCase):
     def setUp(self):
         User.objects.create_user(
             "Melanie",
@@ -13,21 +13,27 @@ class LoginTest(SeleniumTestCase):
             password="testpants",
         )
 
-    def test_successful_login(self):
+    def test_successful_logout(self):
+
+        # first login
         with self.wait_for_page_load():
             self.browser.get(self.live_server_url + "/login/")
         self.browser.find_element_by_name("username").send_keys("test@gmail.com")
         self.browser.find_element_by_name("password").send_keys("testpants")
         with self.wait_for_page_load():
             self.browser.find_element_by_css_selector("*[type=submit]").click()
-        text = self.browser.find_element_by_tag_name("body").text
-        self.assertIn("Hi " + "Melanie" + ".", text)
 
-    def test_unsuccessful_login(self):
-        self.browser.get(self.live_server_url + "/login/")
-        self.browser.find_element_by_name("username").send_keys("test@gmail.com")
-        self.browser.find_element_by_name("password").send_keys("notgonnawork")
+        # then logout
         with self.wait_for_page_load():
-            self.browser.find_element_by_css_selector("*[type=submit]").click()
+            self.browser.find_element_by_xpath('//a[@href="/logoutuser/"]').click()
         text = self.browser.find_element_by_tag_name("body").text
-        self.assertIn("Please enter a correct your email address and password", text)
+        assert "Goodbye, you" in text
+        assert " day!" in text
+
+        with self.wait_for_page_load():
+            self.browser.get(self.live_server_url + "/login/")
+        text = self.browser.find_element_by_tag_name("body").text
+        assert (
+            "Copy/paste to share your link with your internet friendsies." not in text
+        )
+        assert "Log your little gourd in." in text
