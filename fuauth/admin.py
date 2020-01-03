@@ -55,10 +55,6 @@ class CustomUserAdmin(admin.ModelAdmin):
     )
     search_fields = ("email", "name", "phone_number", "carrier")
     ordering = ("email", "name")
-    column = ("total_user_count",)
-
-    def total_user_count(self, obj):
-        return User.objects.count()
 
 
 class CuratedMessageAdmin(admin.ModelAdmin):
@@ -89,9 +85,6 @@ class UserSendTimeAdmin(admin.ModelAdmin):
 
     def user_name(self, obj):
         return obj.user.name
-
-    def user_email(self, obj):
-        return obj.user.email
 
 
 admin.site.register(User, CustomUserAdmin)

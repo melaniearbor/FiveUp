@@ -1,5 +1,4 @@
 from django import forms
-from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.edit import CreateView, ModelFormMixin, UpdateView
@@ -80,14 +79,6 @@ class FiveUUserChangeForm(UpdateView):
         "how_many_messages",
     ]
     success_url = "/login/"
-
-    # def get(self, request, *args, **kwargs):
-    #     if not request.user.is_authenticated():
-    #         return redirect("/login/")
-    #     elif str(request.user.uuid) != self.kwargs.get("uuid"):
-    #         return redirect("/login/")
-    #     else:
-    #         return super(FiveUUserChangeForm, self).get(request, *args, **kwargs)
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated():
