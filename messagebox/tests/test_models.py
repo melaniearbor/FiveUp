@@ -28,7 +28,7 @@ class TestMessageBox(TestCase):
             recipient=self.noof, message_text="You are beautiful", sender_name="Melanie"
         )
 
-    def test_curatedmessage_string_repr(self):
+    def test_message_string_repr(self):
         """
         The message object should have a nice string representation.
         """

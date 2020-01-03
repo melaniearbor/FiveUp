@@ -14,19 +14,20 @@ class LoginTest(SeleniumTestCase):
         )
 
     def test_successful_login(self):
-        self.browser.get(self.live_server_url + "/login/")
         with self.wait_for_page_load():
-            self.browser.find_element_by_name("username").send_keys("test@gmail.com")
-            self.browser.find_element_by_name("password").send_keys("testpants")
+            self.browser.get(self.live_server_url + "/login/")
+        self.browser.find_element_by_name("username").send_keys("test@gmail.com")
+        self.browser.find_element_by_name("password").send_keys("testpants")
+        with self.wait_for_page_load():
             self.browser.find_element_by_css_selector("*[type=submit]").click()
         text = self.browser.find_element_by_tag_name("body").text
         self.assertIn("Hi " + "Melanie" + ".", text)
 
     def test_unsuccessful_login(self):
         self.browser.get(self.live_server_url + "/login/")
+        self.browser.find_element_by_name("username").send_keys("test@gmail.com")
+        self.browser.find_element_by_name("password").send_keys("notgonnawork")
         with self.wait_for_page_load():
-            self.browser.find_element_by_name("username").send_keys("test@gmail.com")
-            self.browser.find_element_by_name("password").send_keys("notgonnawork")
             self.browser.find_element_by_css_selector("*[type=submit]").click()
         text = self.browser.find_element_by_tag_name("body").text
         self.assertIn("Please enter a correct your email address and password", text)

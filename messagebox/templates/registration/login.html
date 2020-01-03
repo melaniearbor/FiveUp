@@ -11,126 +11,108 @@
 
 {% if user.is_authenticated %}
 <div class="jumbotron" align="center">
-	<br><br>
-	<h1>Hi {{ user.name|capfirst }}. <small>You're {% compliment %}.</small>
+    <br><br>
+    <h1>Hi {{ user.name|capfirst }}. <small>You're {% compliment %}.</small>
 </div>
 
 <div class="container">
     <div class="row">
-	    <div class="col-md-6" align="center">
-	        <img class="img-responsive" src='{% static "img/MoreHappy.png" %}'>
-	    </div>
-	    <div class="col-md-6">
-	        <h2>Want some more happy?</h2>
-	        <p><b>Oh, you can have more happy alright.</b></p>
-	        <p><b><a href="/new/{{ user.uuid }}">Click here</b></a> to leave a message for YOURSELF. Like, "Dear self, I've always thought you smell like strawberries and awesomeness. Kiss kiss hug hug."</p>
+        <div class="col-md-6" align="center">
+            <img class="img-responsive" src='{% static "img/MoreHappy.png" %}'>
+        </div>
+        <div class="col-md-6">
+            <h2>Want some more happy?</h2>
+            <p><b>Oh, you can have more happy alright.</b></p>
+            <p><b><a href="/new/{{ user.uuid }}">Click here</b></a> to leave a message for YOURSELF. Like, "Dear self, I've always thought you smell like strawberries and awesomeness. Kiss kiss hug hug."</p>
 
 
     <div class="row">
-    	<div class="col-md-12">
-    		<h2>Even more happy?! <small>Let's do that too.</small></h2>
-	    	<h3>The link below is a magical porthole that allows your friends to send you messages. </h3>
-	    	<p>The power and wonder of this activity cannot be underestimated.</p>
-	    	<div class="well"> 
-	    		<p><a href="http://fiveupapp.com/new/{{ user.uuid }}" target="blank">{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}</a></p>
-    		</div>
-	        <p><b>Copy/paste to share your link with your internet friendsies. </b>They'll fill out a form (no sign up or anything), and you'll get a surprise message from them in the future. They'll feel like they're being awesome friends, and you'll feel like a kitten fountain is bubbling up in your heart. Win win.</p>
-<!-- 	    	<div class="col-xs-2">
-		        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.META.HTTP_HOST }}/new/{{ user.uuid }}"
-			    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-			    <img class="img-responsive" src='{% static "img/facebook.png" %}'></a> 
-			</div>
-			<div class="col-xs-2">
-				<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Send me some happy!&url=http%3A%2F%2F{% filter urlencode %}{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}{% endfilter %}"
-			    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-			    <img class="img-responsive" src='{% static "img/twitter.png" %}'></a>
-		    </div>
-			<div class="col-xs-2">
-	    		<a href="https://plus.google.com/share?url={{ request.META.HTTP_HOST }}/new/{{ user.uuid }}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-			    <img class="img-responsive" src='{% static "img/googleplus.png" %}'></a>
-		    </div>
-			<div class="col-xs-2">
-	    		<a href="mailto:?subject=Send%20me%20some%20happy!&body=Hi!%0A%0AI'm%20using%20FiveUp,%20the%20happy%20little%20project%20that%20sends%20five%20happy%20texts%20every%20day.%20I%20get%20awesome%20texts%20from%20the%20folks%20at%20FiveUp,%20but%20wait!%20There's%20more!%20My%20friends%20and%20family%20can%20add%20messages%20that%20I'll%20get%20at%20some%20unannounced%20time%20in%20the%20future%20too!%20So,%20if%20you're%20so%20inclined,%20click%20the%20link%20below%20and%20send%20me%20your%20fuzzy%20snuggles%20and%20sparkly%20rainbows.%0A%0AHuzzah!%0A%0Ahttp%3A%2F%2F{% filter urlencode %}{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}{% endfilter %}">
-			    <img class="img-responsive" src='{% static "img/email.png" %}'></a>
-		    </div> -->
-	    </div>
+        <div class="col-md-12">
+            <h2>Even more happy?! <small>Let's do that too.</small></h2>
+            <h3>The link below is a magical porthole that allows your friends to send you messages. </h3>
+            <p>The power and wonder of this activity cannot be underestimated.</p>
+            <div class="well">
+                <p><a href="http://fiveupapp.com/new/{{ user.uuid }}" target="blank">{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}</a></p>
+            </div>
+            <p><b>Copy/paste to share your link with your internet friendsies. </b>They'll fill out a form (no sign up or anything), and you'll get a surprise message from them in the future. They'll feel like they're being awesome friends, and you'll feel like a kitten fountain is bubbling up in your heart. Win win.</p>
+        </div>
     </div>
-        	<hr>
-</div>	
+            <hr>
+</div>
 
 <div class="row"><hr></div>
 
 <div class="container" style="padding:30px">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h2 class="panel-title">Your Groovy Account Stuff   <a href="{% url "home" %}changeprofile/{{ user.uuid }}" class="btn btn-default" role="button"><small>Edit</small></a> </h2>
-		</div>
-		<div class="panel-body">
-			<div class="row">
-				<div class="col-md-2"><p><b>Name</b></p></div>
-				<div class="col-md-4 "><p align="left">{{ user.name }}</p></div>
-				<div class="col-md-2"><p><b>Email</b></p></div>
-				<div class="col-md-4"><p align="left">{{ user.email }}</p></div>
-			</div>
-			<div class="row">
-				<div class="col-md-2"><p><b>Phone Number</b></p></div>
-				<div class="col-md-4 "><p align="left">{{ user.phone_number }}</p></div>
-				<div class="col-md-2"><p><b>Mobile Carrier</b></p></div>
-				<div class="col-md-4"><p align="left">{{ user.get_carrier_display }}</p></div>
-			</div>
-			<div class="row">
-				<div class="col-md-2"><p><b>Do you want messages?</b></p></div>
-				<div class="col-md-4 ">
-					{% if user.receiving_messages %}
-						<font color="green">Yes! I love them with all my heart.</font><p>
-					{% else %}
-						<font color="orange">Not right now.</font></p>
-					{% endif %}
-				</div>
-				<div class="col-md-2"><p><b>How many messages per day?</b></p></div>
-				<div class="col-md-4"><p align="left">{{ user.how_many_messages }}</p></div>
-			</div>
-			<div class="row">
-				<div class="col-md-4"><h2><a href="/password_change" class="btn btn-default" role="button"><small>Change password</small></a></h2></div>
-			</div>
-		</div>
-	</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Your Groovy Account Stuff   <a href="{% url "home" %}changeprofile/{{ user.uuid }}" class="btn btn-default" role="button"><small>Edit</small></a> </h2>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2"><p><b>Name</b></p></div>
+                <div class="col-md-4 "><p align="left">{{ user.name }}</p></div>
+                <div class="col-md-2"><p><b>Email</b></p></div>
+                <div class="col-md-4"><p align="left">{{ user.email }}</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><p><b>Phone Number</b></p></div>
+                <div class="col-md-4 "><p align="left">{{ user.phone_number }}</p></div>
+                <div class="col-md-2"><p><b>Mobile Carrier</b></p></div>
+                <div class="col-md-4"><p align="left">{{ user.get_carrier_display }}</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><p><b>Do you want messages?</b></p></div>
+                <div class="col-md-4 ">
+                    {% if user.receiving_messages %}
+                        <font color="green">Yes! I love them with all my heart.</font><p>
+                    {% else %}
+                        <font color="orange">Not right now.</font></p>
+                    {% endif %}
+                </div>
+                <div class="col-md-2"><p><b>How many messages per day?</b></p></div>
+                <div class="col-md-4"><p align="left">{{ user.how_many_messages }}</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><h2><a href="/password_change" class="btn btn-default" role="button"><small>Change password</small></a></h2></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% else %}
 <div class="jumbotron" align="center">
-	<div class="row">
-		<div class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-10">
-		    <h1>Hi there, pumpkin. <small>Log your little gourd in.</small></h1><br><br>
-		    <div class="col-xs-12" align="center">
-				<form class="form-horizontal" action="/login/" method="post">
-					{% csrf_token %}
-					{{ form.non_field_errors }}
+    <div class="row">
+        <div class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-10">
+            <h1>Hi there, pumpkin. <small>Log your little gourd in.</small></h1><br><br>
+            <div class="col-xs-12" align="center">
+                <form class="form-horizontal" action="/login/" method="post">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
                         <div class="form-group" id="email">
                             <label>Email schmemail:</label>
-			            	{{ form.username.errors }}
+                            {{ form.username.errors }}
                             {{ form.username|add_class:"form-control required"|attr:"data-parsley-type:email" }}
-						</div>
-						</br>
+                        </div>
+                        </br>
                         <div class="form-group" id="passDiv">
                             <label>Your pretty password:</label>
                             {{ form.password.errors }}
                             {{ form.password|add_class:"form-control required"|attr:"type:password" }}
                         </div>
-						</br>
-			            <div class="form-group">
-							<div class="col-md-offset-4 col-md-1">
-								<button type="submit" class="btn btn-default">Do it. Do it now!</button>
-							</div>
-						</div>
-				</form>
-				<small>or click <a href="/password_reset">here</a> if your password has wondered out 
-						of your head to the land of lost passwords.</small>
-				</div>
+                        </br>
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-1">
+                                <button type="submit" class="btn btn-default">Do it. Do it now!</button>
+                            </div>
+                        </div>
+                </form>
+                <small>or click <a href="/password_reset">here</a> if your password has wondered out
+                        of your head to the land of lost passwords.</small>
+                </div>
 
-			</div>	
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div><!--/.jumbotron -->
 {% endif %}
 
