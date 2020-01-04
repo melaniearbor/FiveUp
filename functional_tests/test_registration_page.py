@@ -1,6 +1,7 @@
 from django.core import mail
 from fuauth.models import User
-from utils import SeleniumTestCase
+
+from .utils import SeleniumTestCase
 
 
 class LoginTest(SeleniumTestCase):
