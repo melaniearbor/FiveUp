@@ -2,7 +2,8 @@ from collections import OrderedDict
 
 from fuauth.models import User
 from selenium.webdriver.support.select import Select
-from utils import SeleniumTestCase
+
+from .utils import SeleniumTestCase
 
 
 class TestChangeProfile(SeleniumTestCase):

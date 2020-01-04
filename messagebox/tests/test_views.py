@@ -104,6 +104,6 @@ class TestMiscViews(SeleniumTestCase):
         """
         response = self.client.get(reverse("contact"))
         assert response.status_code == 200
-        assert "why don't ya" in response.content
-        assert "www.twitter.com/hifiveup" in response.content
-        assert "www.facebook.com/fiveupapp" in response.content
+        assert b"why don't ya" in response.content
+        assert b"www.twitter.com/hifiveup" in response.content
+        assert b"www.facebook.com/fiveupapp" in response.content

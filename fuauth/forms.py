@@ -48,15 +48,6 @@ class PublicUserCreation(CreateView, ModelFormMixin):
     template_name = "index.html"
     form_class = FUserCreationForm
     success_url = "/"
-    fields = [
-        "name",
-        "email",
-        "phone_number",
-        "carrier",
-        "how_many_messages",
-        "user_timezone",
-        "password",
-    ]
     labels = {
         "name": _("what can we call you? Pete? Cindy?"),
         "email": _("what's your email address?"),

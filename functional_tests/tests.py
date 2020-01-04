@@ -1,8 +1,7 @@
-from utils import SeleniumTestCase
+from .utils import SeleniumTestCase
 
 
 class TestBasicPages(SeleniumTestCase):
-
     def test_home_page_renders(self):
         """
         Tests that the home url renders and has some text in it.
