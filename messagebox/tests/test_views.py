@@ -1,7 +1,7 @@
 import uuid
 
-from django.core.urlresolvers import reverse
 from django.test import Client, TestCase
+from django.urls import reverse
 from fuauth.models import User
 from functional_tests.utils import SeleniumTestCase
 
