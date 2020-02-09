@@ -1,9 +1,10 @@
+import uuid
+
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
                                         PermissionsMixin)
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-from uuidfield import UUIDField
 
 
 class UserManager(BaseUserManager):
@@ -150,7 +151,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     receive_newsletter = models.BooleanField(default=False)
 
-    uuid = UUIDField(blank=True, null=True, max_length=32, auto=True)
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     receiving_messages = models.BooleanField(default=True)
 

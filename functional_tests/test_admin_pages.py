@@ -58,16 +58,15 @@ class TestAdmin(SeleniumTestCase):
         with self.wait_for_page_load():
             self.browser.find_element_by_css_selector("*[type=submit]").click()
         text = self.browser.find_element_by_tag_name("body").text
-
         page_items = [
             "Django administration",
-            "Welcome, Noofie Admin.",
-            "Change password / Log out",
+            "WELCOME, NOOFIE ADMIN.",
+            "CHANGE PASSWORD / LOG OUT",
             "Site administration",
             "Groups",
-            "Courier",
-            "Email log",
-            "Fuauth",
+            "COURIER",
+            "EMAIL LOG",
+            "FUAUTH",
             "Messages",
             "Curated messages",
         ]

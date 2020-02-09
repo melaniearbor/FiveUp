@@ -1,12 +1,10 @@
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import EmailMultiAlternatives
-from django.shortcuts import redirect, render_to_response
-from django.template import RequestContext
+from django.shortcuts import redirect, render
 from fuauth.forms import FUserCreationForm
 
 
 def register(request):
-    context = RequestContext(request)
 
     registered = False
 
@@ -40,15 +38,13 @@ def register(request):
     else:
         user_form = FUserCreationForm()
 
-    return render_to_response(
+    return render(
+        request,
         "registration/register.html",
         {"user_form": user_form, "registered": registered},
-        context,
     )
 
 
 def logout_user(request):
     logout(request)
-    return render_to_response(
-        "registration/logout.html", context_instance=RequestContext(request)
-    )
+    return render(request, "registration/logout.html")

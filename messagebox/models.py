@@ -1,10 +1,12 @@
-from django.core.urlresolvers import reverse
 from django.db import models
+from django.urls import reverse
 
 
 class Message(models.Model):
 
-    recipient = models.ForeignKey("fuauth.User", related_name="messages")
+    recipient = models.ForeignKey(
+        "fuauth.User", related_name="messages", on_delete=models.CASCADE
+    )
     sender_name = models.CharField(max_length=35)
     message_text = models.TextField(max_length=125)
     created_date = models.DateTimeField(auto_now=True)

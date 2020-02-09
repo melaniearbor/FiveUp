@@ -56,7 +56,6 @@ INSTALLED_APPS = (
     "courier",
     "email_log",
     "django_extensions",
-    "shell_plus",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,15 +108,23 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "messagebox/templates"),
-    os.path.join(BASE_DIR, "fuauth/templates"),
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.core.context_processors.request",
-    "django.contrib.auth.context_processors.auth",
-)
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [
+            os.path.join(BASE_DIR, "messagebox/templates"),
+            os.path.join(BASE_DIR, "fuauth/templates"),
+        ],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.request",
+                "django.template.context_processors.debug",
+                "django.contrib.auth.context_processors.auth",
+            ]
+        },
+    }
+]
 
 
 EMAIL_BACKEND = "email_log.backends.EmailBackend"

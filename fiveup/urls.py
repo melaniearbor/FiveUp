@@ -1,15 +1,14 @@
 import fuauth.forms
 import fuauth.views
 import messagebox.views
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.contrib import admin
 
 from .views import display_cert
 
-urlpatterns = patterns(
-    "",
+urlpatterns = [
     url("^", include("django.contrib.auth.urls", namespace="auth")),
-    url(r"^admin/", include(admin.site.urls)),
+    url("admin/", admin.site.urls),
     url(r"^$", fuauth.forms.PublicUserCreation.as_view(), name="home"),
     url(
         r"^new/(?P<uuid>.+)/$",
@@ -29,6 +28,6 @@ urlpatterns = patterns(
         r"^.well-known/pki-validation/BA7CD11C05866445FBFE053E2C1AAA8C.txt",
         display_cert,
     ),
-)
+]
 
 STATIC_URL = "/static/"
