@@ -14,7 +14,11 @@ import os.path
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
+
 from django.core.exceptions import ImproperlyConfigured
+
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -146,3 +150,12 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Allow all host headers
 ALLOWED_HOSTS = ["*"]
+
+
+sentry_sdk.init(
+    dsn="https://1dc4252ef5c54824ac5cb9b5ec9fe9b7@sentry.io/5178781",
+    integrations=[DjangoIntegration()],
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True,
+)
