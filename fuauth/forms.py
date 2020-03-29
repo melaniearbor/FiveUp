@@ -2,6 +2,7 @@ from django import forms
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.edit import CreateView, ModelFormMixin, UpdateView
+
 from fuauth.models import User
 
 
