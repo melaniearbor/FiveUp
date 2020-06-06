@@ -1,13 +1,14 @@
 import fuauth.forms
 import fuauth.views
 import messagebox.views
-from django.conf.urls import include, url
+from django.conf.urls import url
+from django.urls import include, path
 from django.contrib import admin
 
 from .views import display_cert
 
 urlpatterns = [
-    url("^", include("django.contrib.auth.urls", namespace="auth")),
+    path("", include('django.contrib.auth.urls')),
     url("admin/", admin.site.urls),
     url(r"^$", fuauth.forms.PublicUserCreation.as_view(), name="home"),
     url(
