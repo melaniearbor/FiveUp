@@ -55,7 +55,6 @@ INSTALLED_APPS = (
     "messagebox",
     "messagevault",
     "widget_tweaks",
-    "django_modalview",
     "parsley",
     "courier",
     "email_log",
