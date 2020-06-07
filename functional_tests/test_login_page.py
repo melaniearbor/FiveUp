@@ -32,3 +32,24 @@ class LoginTest(SeleniumTestCase):
             self.browser.find_element_by_css_selector("*[type=submit]").click()
         text = self.browser.find_element_by_tag_name("body").text
         self.assertIn("Please enter a correct your email address and password", text)
+
+
+class ForgotPasswordTest(SeleniumTestCase):
+    def setUp(self):
+        User.objects.create_user(
+            "Melanie",
+            "6192222222",
+            User.ATT,
+            User.HAWAII,
+            email="test@gmail.com",
+            password="testpants",
+        )
+
+    def test_existing_user(self):
+        with self.wait_for_page_load():
+            self.browser.get(self.live_server_url + "/password_reset/")
+        self.browser.find_element_by_name("email").send_keys("test@gmail.com")
+        with self.wait_for_page_load():
+            self.browser.find_element_by_css_selector("*[type=submit]").click()
+        text = self.browser.find_element_by_tag_name("body").text
+        self.assertIn("Password reset sent", text)

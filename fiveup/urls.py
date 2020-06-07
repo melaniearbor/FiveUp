@@ -7,7 +7,7 @@ from django.contrib import admin
 from .views import display_cert
 
 urlpatterns = [
-    url("^", include("django.contrib.auth.urls", namespace="auth")),
+    url("^", include("django.contrib.auth.urls")),
     url("admin/", admin.site.urls),
     url(r"^$", fuauth.forms.PublicUserCreation.as_view(), name="home"),
     url(
