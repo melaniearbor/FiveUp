@@ -33,7 +33,7 @@ def register(request):
             now_carrier = request.POST["carrier"]
             send_confirmation_text(now_phone, now_carrier)
 
-            return redirect("auth:login")
+            return redirect("login")
 
     else:
         user_form = FUserCreationForm()
