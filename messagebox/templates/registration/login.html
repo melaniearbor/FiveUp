@@ -32,7 +32,7 @@
             <h3>The link below is a magical porthole that allows your friends to send you messages. </h3>
             <p>The power and wonder of this activity cannot be underestimated.</p>
             <div class="well">
-                <p><a href="http://fiveupapp.com/new/{{ user.uuid }}" target="blank">{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}</a></p>
+                <p><a href="/new/{{ user.uuid }}" target="blank">{{ request.META.HTTP_HOST }}/new/{{ user.uuid }}</a></p>
             </div>
             <p><b>Copy/paste to share your link with your internet friendsies. </b>They'll fill out a form (no sign up or anything), and you'll get a surprise message from them in the future. They'll feel like they're being awesome friends, and you'll feel like a kitten fountain is bubbling up in your heart. Win win.</p>
         </div>
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                 </form>
-                <small>or click <a href="/password_reset">here</a> if your password has wondered out
+                <small>or click <a href="/password_reset">here</a> if your password has wandered out
                         of your head to the land of lost passwords.</small>
                 </div>
 

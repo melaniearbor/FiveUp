@@ -55,19 +55,17 @@ INSTALLED_APPS = (
     "messagebox",
     "messagevault",
     "widget_tweaks",
-    "django_modalview",
     "parsley",
     "courier",
     "email_log",
     "django_extensions",
 )
 
-MIDDLEWARE_CLASSES = (
-    "django.contrib.sessions.middleware.SessionMiddleware",
+MIDDLEWARE = (
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.auth.middleware.SessionAuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 )
@@ -125,6 +123,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.template.context_processors.debug",
                 "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ]
         },
     }

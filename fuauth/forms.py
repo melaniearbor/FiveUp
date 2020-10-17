@@ -73,7 +73,7 @@ class FiveUUserChangeForm(UpdateView):
     success_url = "/login/"
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             return redirect("/login/")
         elif str(request.user.uuid) != self.kwargs.get("uuid"):
             return redirect("/login/")

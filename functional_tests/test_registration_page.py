@@ -17,8 +17,10 @@ class LoginTest(SeleniumTestCase):
         self.browser.find_element_by_name("name").send_keys("Melanie")
         self.browser.find_element_by_name("email").send_keys("test@gmailzzz.com")
         self.browser.find_element_by_name("phone_number").send_keys("6192222222")
-        self.browser.find_element_by_name("carrier").send_keys("Virgin")
-        self.browser.find_element_by_name("user_timezone").send_keys("Pacific")
+        carrier_dropdown = self.browser.find_element_by_name("carrier")
+        carrier_dropdown.find_element_by_css_selector("option[value='pixmbl.com']").click()
+        tz = self.browser.find_element_by_name("user_timezone")
+        tz.find_element_by_css_selector("option[value='PC']").click()
         self.browser.find_element_by_name("password").send_keys("testpants")
 
         with self.wait_for_page_load():
@@ -38,13 +40,16 @@ class LoginTest(SeleniumTestCase):
         """
         A successful registration should trigger a welcome text.
         """
+
         with self.wait_for_page_load():
             self.browser.get(self.live_server_url + "/")
         self.browser.find_element_by_name("name").send_keys("Melanie")
         self.browser.find_element_by_name("email").send_keys("test@gmailzzz.com")
         self.browser.find_element_by_name("phone_number").send_keys("6192222222")
-        self.browser.find_element_by_name("carrier").send_keys("Virgin")
-        self.browser.find_element_by_name("user_timezone").send_keys("Pacific")
+        carrier_dropdown = self.browser.find_element_by_name("carrier")
+        carrier_dropdown.find_element_by_css_selector("option[value='pixmbl.com']").click()
+        tz = self.browser.find_element_by_name("user_timezone")
+        tz.find_element_by_css_selector("option[value='PC']").click()
         self.browser.find_element_by_name("password").send_keys("testpants")
         with self.wait_for_page_load():
             self.browser.find_element_by_css_selector("*[type=submit]").click()
@@ -72,8 +77,10 @@ class LoginTest(SeleniumTestCase):
             "cass"
         )  # this isn't an email address!
         self.browser.find_element_by_name("phone_number").send_keys("6192222222")
-        self.browser.find_element_by_name("carrier").send_keys("Virgin")
-        self.browser.find_element_by_name("user_timezone").send_keys("Pacific")
+        carrier_dropdown = self.browser.find_element_by_name("carrier")
+        carrier_dropdown.find_element_by_css_selector("option[value='pixmbl.com']").click()
+        tz = self.browser.find_element_by_name("user_timezone")
+        tz.find_element_by_css_selector("option[value='PC']").click()
         self.browser.find_element_by_name("password").send_keys("testpants")
 
         # We don't wait on this click because the page won't actually refresh since
@@ -95,8 +102,10 @@ class LoginTest(SeleniumTestCase):
             "a@b.c"
         )  # this isn't an email address!
         self.browser.find_element_by_name("phone_number").send_keys("6192222222")
-        self.browser.find_element_by_name("carrier").send_keys("Virgin")
-        self.browser.find_element_by_name("user_timezone").send_keys("Pacific")
+        carrier_dropdown = self.browser.find_element_by_name("carrier")
+        carrier_dropdown.find_element_by_css_selector("option[value='pixmbl.com']").click()
+        tz = self.browser.find_element_by_name("user_timezone")
+        tz.find_element_by_css_selector("option[value='PC']").click()
         self.browser.find_element_by_name("password").send_keys("testpants")
         with self.wait_for_page_load():
             self.browser.find_element_by_css_selector("*[type=submit]").click()
@@ -115,8 +124,10 @@ class LoginTest(SeleniumTestCase):
         self.browser.find_element_by_name("name").send_keys("Melanie")
         self.browser.find_element_by_name("email").send_keys("test@gmailzzz.com")
         self.browser.find_element_by_name("phone_number").send_keys("6192222222")
-        self.browser.find_element_by_name("carrier").send_keys("Virgin")
-        self.browser.find_element_by_name("user_timezone").send_keys("Pacific")
+        carrier_dropdown = self.browser.find_element_by_name("carrier")
+        carrier_dropdown.find_element_by_css_selector("option[value='pixmbl.com']").click()
+        tz = self.browser.find_element_by_name("user_timezone")
+        tz.find_element_by_css_selector("option[value='PC']").click()
         self.browser.find_element_by_name("password").send_keys("testpants")
 
         with self.wait_for_page_load():
