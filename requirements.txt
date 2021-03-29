@@ -36,7 +36,7 @@ prompt-toolkit==3.0.2
 psycopg2==2.8.4
 ptyprocess==0.6.0
 py==1.7.0
-Pygments==2.5.2
+Pygments==2.7.4
 pyparsing==2.4.6
 pytest==4.0.1
 pytest-cov==2.7.1
