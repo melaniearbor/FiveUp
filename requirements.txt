@@ -53,6 +53,6 @@ smtpapi==0.2.0
 static3==0.6.1
 traitlets==4.3.3
 typing==3.7.4
-urllib3==1.25.8
+urllib3==1.26.5
 wcwidth==0.1.7
 zipp==0.6.0
