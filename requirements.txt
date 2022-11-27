@@ -33,7 +33,7 @@ pexpect==4.8.0
 pickleshare==0.7.5
 pluggy==0.8.0
 prompt-toolkit==3.0.2
-psycopg2==2.9.5
+psycopg2-binary==2.9.5
 ptyprocess==0.6.0
 py==1.7.0
 Pygments==2.5.2
