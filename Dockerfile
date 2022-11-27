@@ -4,6 +4,9 @@ FROM python:${PYTHON_VERSION}
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV SECRET_KEY "this setting does not have a default"
+ENV SENDGRID_API_KEY "this setting does not have a default"
+ENV DJANGO_SETTINGS_MODULE settings.production
 
 RUN mkdir -p /code
 
